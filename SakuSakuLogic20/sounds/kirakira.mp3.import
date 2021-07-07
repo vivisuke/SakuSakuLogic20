@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/kirakira.mp3-418a23c5d7ae0574ba2b0a8c793ef654.mp3str"
+
+[deps]
+
+source_file="res://sounds/kirakira.mp3"
+dest_files=[ "res://.import/kirakira.mp3-418a23c5d7ae0574ba2b0a8c793ef654.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
