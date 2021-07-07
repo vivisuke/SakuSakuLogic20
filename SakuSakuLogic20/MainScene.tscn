@@ -419,3 +419,13 @@ position = Vector2( 200, 200 )
 tile_set = SubResource( 2 )
 cell_size = Vector2( 20, 20 )
 format = 1
+
+[node name="MessLabel" type="Label" parent="."]
+margin_left = 18.8988
+margin_top = 767.292
+margin_right = 75.8988
+margin_bottom = 781.292
+text = "message"
+__meta__ = {
+"_edit_use_anchors_": false
+}

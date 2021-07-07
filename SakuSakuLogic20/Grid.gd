@@ -3,8 +3,29 @@ extends ColorRect
 
 onready var g = get_node("/root/Global")
 
+var pos1 = Vector2(-1, -1)		# ライン起点、-1 for ライン無し
+var pos2 = Vector2(0, 0)		# ライン終点
+var curX = -1
+var curY = -1
+var font
+
 func _ready():
+	var label = Label.new() 
+	font = label.get_font("")
 	pass # Replace with function body.
+func set_font(f):
+	font = f
+func set_cursor(cx, cy):
+	curX = cx
+	curY = cy
+	update()
+func clearLine():
+	pos1 = Vector2(-1, -1)
+	update()
+func setLine(p1, p2):
+	pos1 = p1
+	pos2 = p2
+	update()
 func _draw():
 	# 縦線描画
 	var y2 = g.BOARD_HEIGHT + 1
