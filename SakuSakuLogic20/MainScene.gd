@@ -237,16 +237,16 @@ func data_to_clues(data : int) -> Array:
 		lst.push_back(n)
 	return lst
 # key は連配列、下位ビットの方が配列先頭
-func build_map():
-	g_map.clear()
-	for data in range(1<<N_IMG_CELL_HORZ):
-		var key = data_to_clues(data)
-		if g_map.has(key):
-			g_map[key].push_back(data)
-		else:
-			g_map[key] = [data]
-	#print(g_map([1]))
-	#print(g_map([0]))
+#func build_map():
+#	g_map.clear()
+#	for data in range(1<<N_IMG_CELL_HORZ):
+#		var key = data_to_clues(data)
+#		if g_map.has(key):
+#			g_map[key].push_back(data)
+#		else:
+#			g_map[key] = [data]
+#	#print(g_map([1]))
+#	#print(g_map([0]))
 func to_sliced(data):
 	if data == 0:
 		return [0]
@@ -309,8 +309,8 @@ func array_to_binText(lst : Array) -> String:
 	txt += "]"
 	return txt
 func init_candidates():
+	return
 	#print("\n*** init_candidates():")
-	#print("g_map[[4]] = ", g_map[[4]])
 	for y in range(N_IMG_CELL_VERT):
 		#print("h_clues[", y, "] = ", h_clues[y])
 		if h_clues[y] == null:
@@ -325,7 +325,6 @@ func init_candidates():
 		else:
 			v_candidates[x] = g_map[v_clues[x]].duplicate()
 		#print( "v_cand[", x, "] = ", to_binText(v_candidates[x]) )
-	#print("g_map[[4]] = ", g_map[[4]])
 func num_candidates():
 	var sum = 0
 	for y in range(N_IMG_CELL_VERT):
@@ -350,7 +349,6 @@ func update_h_fixedbits():
 			h_fixed_bits_1[y] = bits1
 			h_fixed_bits_0[y] = bits0
 		#print("h_fixed[", y , "] = ", to_binText(h_fixed_bits_1[y]), ", ", to_binText(h_fixed_bits_0[y]))
-	#print("g_map[[4]] = ", g_map[[4]])
 	pass
 # v_candidates[] を元に v_fixed_bits_1, 0 を計算
 func update_v_fixedbits():
@@ -369,7 +367,6 @@ func update_v_fixedbits():
 			v_fixed_bits_1[x] = bits1
 			v_fixed_bits_0[x] = bits0
 		#print("v_fixed[", x , "] = ", to_binText(v_fixed_bits_1[x]), ", ", to_binText(v_fixed_bits_0[x]))
-	#print("g_map[[4]] = ", g_map[[4]])
 	pass
 func hFixed_to_vFixed():
 	#print("\n*** hFixed_to_vFixed():")
@@ -387,7 +384,6 @@ func hFixed_to_vFixed():
 			if( (h_fixed_bits_0[y] & hmask) != 0 ):
 				v_fixed_bits_0[x] |= vmask;
 		#print("v_fixed[", x , "] = ", to_binText(v_fixed_bits_1[x]), ", ", to_binText(v_fixed_bits_0[x]))
-	#print("g_map[[4]] = ", g_map[[4]])
 	pass
 func vFixed_to_hFixed():
 	#print("\n*** vFixed_to_hFixed():")
@@ -405,7 +401,6 @@ func vFixed_to_hFixed():
 			if( (v_fixed_bits_0[x] & vmask) != 0 ):
 				h_fixed_bits_0[y] |= hmask;
 		#print("h_fixed[", y , "] = ", to_binText(h_fixed_bits_1[y]), ", ", to_binText(h_fixed_bits_0[y]))
-	#print("g_map[[4]] = ", g_map[[4]])
 	pass
 # v_fixed_bits_1, 0 を元に v_candidates[] から不可能なパターンを削除
 func update_v_candidates():
@@ -416,7 +411,6 @@ func update_v_candidates():
 					(~v_candidates[x][i] & v_fixed_bits_0[x]) != v_fixed_bits_0[x] ):
 				v_candidates[x].remove(i)
 		#print( "v_cand[", x, "] = ", to_binText(v_candidates[x]) )
-	#print("g_map[[4]] = ", g_map[[4]])
 	pass
 # h_fixed_bits_1, 0 を元に h_candidates[] から不可能なパターンを削除
 func update_h_candidates():
@@ -427,7 +421,6 @@ func update_h_candidates():
 					(~h_candidates[y][i] & h_fixed_bits_0[y]) != h_fixed_bits_0[y] ):
 				h_candidates[y].remove(i)
 		#print( "h_cand[", y, "] = ", to_binText(h_candidates[y]) )
-	#print("g_map[[4]] = ", g_map[[4]])
 	pass
 func remove_h_candidates_conflicted():		# 現在のセルの状態にマッチしない候補をリストから削除
 	for y in range(N_IMG_CELL_VERT):
@@ -482,6 +475,7 @@ func set_h_auto_cross(y0):
 			h_autoFilledCross[y0] |= mask
 		mask <<= 1
 func check_h_conflicted(y0):
+	return
 	var d1 = get_h_data(y0)
 	var d0 = get_h_data0(y0)
 	#print("d0 = ", d0)
@@ -490,16 +484,17 @@ func check_h_conflicted(y0):
 	remove_conflicted(d1, d0, lst)
 	if lst.empty():
 		for x in range(h_clues[y0].size()):
-			$BoardBG/TileMapBG.set_cell(-x-1, y0, TILE_BG_YELLOW)
+			$boardBG/TileMapBG.set_cell(-x-1, y0, TILE_BG_YELLOW)
 	else:
 		for x in range(h_clues[y0].size()):
-			if $BoardBG/TileMapBG.get_cell(-x-1, y0) != TILE_BG_GRAY:
-				$BoardBG/TileMapBG.set_cell(-x-1, y0, TILE_NONE)	# グレイでなければ透明に
+			if $boardBG/TileMapBG.get_cell(-x-1, y0) != TILE_BG_GRAY:
+				$boardBG/TileMapBG.set_cell(-x-1, y0, TILE_NONE)	# グレイでなければ透明に
 	#bg = TILE_BG_YELLOW if lst.empty() else TILE_NONE
 	#for x in range(h_clues[y0].size()):
-		#if $BoardBG/TileMapBG.get_cell(-x-1, y0) != TILE_BG_GRAY:
-		#$BoardBG/TileMapBG.set_cell(-x-1, y0, bg)	# 黄色の方が優先
+		#if $boardBG/TileMapBG.get_cell(-x-1, y0) != TILE_BG_GRAY:
+		#$boardBG/TileMapBG.set_cell(-x-1, y0, bg)	# 黄色の方が優先
 func check_h_clues(y0 : int):		# 水平方向チェック
+	return
 	var d1 = get_h_data(y0)
 	var d0 = get_h_data0(y0)
 	#print("d0 = ", d0)
@@ -514,7 +509,7 @@ func check_h_clues(y0 : int):		# 水平方向チェック
 			bg = TILE_BG_GRAY if d1 != 0 else TILE_NONE			# グレイ or 無し
 			set_h_auto_cross(y0)
 			for x in range(h_clues[y0].size()):
-				$BoardBG/TileMapBG.set_cell(-x-1, y0, bg)
+				$boardBG/TileMapBG.set_cell(-x-1, y0, bg)
 		else:
 			# 部分確定判定
 			#	lst: 可能なビットパターンリスト（配列）
@@ -522,7 +517,7 @@ func check_h_clues(y0 : int):		# 水平方向チェック
 			#	全要素と一致していれば、その部分がマッチしている（はず）
 			var uu = usedup_clues(lst, d1, h_clues[y0].size())
 			for x in range(h_clues[y0].size()):
-				$BoardBG/TileMapBG.set_cell(-x-1, y0, (TILE_NONE if uu[x] == 0 else TILE_BG_GRAY))
+				$boardBG/TileMapBG.set_cell(-x-1, y0, (TILE_NONE if uu[x] == 0 else TILE_BG_GRAY))
 	pass
 func remove_v_auto_cross(x0):
 	if v_autoFilledCross[x0] != 0:
@@ -542,6 +537,7 @@ func set_v_auto_cross(x0):
 			v_autoFilledCross[x0] |= mask
 		mask <<= 1
 func check_v_conflicted(x0):
+	return
 	var d1 = get_v_data(x0)
 	var d0 = get_v_data0(x0)
 	#print("d0 = ", d0)
@@ -550,16 +546,17 @@ func check_v_conflicted(x0):
 	remove_conflicted(d1, d0, lst)
 	if lst.empty():
 		for y in range(v_clues[x0].size()):
-			$BoardBG/TileMapBG.set_cell(x0, -y-1, TILE_BG_YELLOW)
+			$boardBG/TileMapBG.set_cell(x0, -y-1, TILE_BG_YELLOW)
 	else:
 		for y in range(v_clues[x0].size()):
-			if $BoardBG/TileMapBG.get_cell(x0, -y-1) != TILE_BG_GRAY:
-				$BoardBG/TileMapBG.set_cell(x0, -y-1, TILE_NONE)	# グレイでなければ透明に
+			if $boardBG/TileMapBG.get_cell(x0, -y-1) != TILE_BG_GRAY:
+				$boardBG/TileMapBG.set_cell(x0, -y-1, TILE_NONE)	# グレイでなければ透明に
 	#bg = TILE_BG_YELLOW if lst.empty() else TILE_NONE
 	#for y in range(v_clues[x0].size()):
-		#if $BoardBG/TileMapBG.get_cell(x0, -y-1) != TILE_BG_GRAY:
-		#$BoardBG/TileMapBG.set_cell(x0, -y-1, bg)
+		#if $boardBG/TileMapBG.get_cell(x0, -y-1) != TILE_BG_GRAY:
+		#$boardBG/TileMapBG.set_cell(x0, -y-1, bg)
 func check_v_clues(x0 : int):		# 垂直方向チェック
+	return
 	var d1 = get_v_data(x0)
 	var d0 = get_v_data0(x0)
 	var lst = g_map[v_clues[x0]].duplicate()
@@ -573,7 +570,7 @@ func check_v_clues(x0 : int):		# 垂直方向チェック
 			bg = TILE_BG_GRAY if d1 != 0 else TILE_NONE			# グレイ or 無し
 			set_v_auto_cross(x0)
 			for y in range(v_clues[x0].size()):
-				$BoardBG/TileMapBG.set_cell(x0, -y-1, bg)
+				$boardBG/TileMapBG.set_cell(x0, -y-1, bg)
 		else:
 			# 部分確定判定
 			#	lst: 可能なビットパターンリスト（配列）
@@ -581,7 +578,7 @@ func check_v_clues(x0 : int):		# 垂直方向チェック
 			#	全要素と一致していれば、その部分がマッチしている（はず）
 			var uu = usedup_clues(lst, d1, v_clues[x0].size())
 			for y in range(v_clues[x0].size()):
-				$BoardBG/TileMapBG.set_cell(x0, -y-1, (TILE_NONE if uu[y] == 0 else TILE_BG_GRAY))
+				$boardBG/TileMapBG.set_cell(x0, -y-1, (TILE_NONE if uu[y] == 0 else TILE_BG_GRAY))
 #func check_all_clues():
 #	for y in range(N_IMG_CELL_VERT):
 #		check_h_clues(y)
@@ -669,7 +666,8 @@ func update_all_clues():
 func clearMiniTileMap():
 	for y in range(N_IMG_CELL_VERT):
 		for x in range(N_IMG_CELL_HORZ):
-			$MiniTileMap.set_cell(x, y, TILE_NONE)
+			##//$MiniTileMap.set_cell(x, y, TILE_NONE)
+			pass
 func clearTileMap():
 	for y in range(N_IMG_CELL_VERT):
 		for x in range(N_IMG_CELL_HORZ):
@@ -677,19 +675,21 @@ func clearTileMap():
 func clearTileMapBG():
 	for y in range(N_IMG_CELL_VERT):
 		for x in range(N_IMG_CELL_HORZ):
-			$BoardBG/TileMapBG.set_cell(x, y, TILE_NONE)
+			$boardBG/TileMapBG.set_cell(x, y, TILE_NONE)
 func setup_fallingBlack(pos):
-	var obj = FallingBlack.instance()
-	obj.setup(pos)
-	add_child(obj)
+	##//var obj = FallingBlack.instance()
+	##//obj.setup(pos)
+	##//add_child(obj)
+	pass
 func setup_fallingCross(pos):
-	var obj = FallingCross.instance()
-	obj.setup(pos)
-	add_child(obj)
+	##//var obj = FallingCross.instance()
+	##//obj.setup(pos)
+	##//add_child(obj)
+	pass
 func posToXY(pos):
 	var xy = Vector2(-1, -1)
-	var X0 = $boardBG/TileMap.position.x
-	var Y0 = $boardBG/TileMap.position.y
+	var X0 = $boardBG/TileMap.global_position.x
+	var Y0 = $boardBG/TileMap.global_position.y
 	if pos.x >= X0 && pos.x < X0 + CELL_WIDTH*N_IMG_CELL_HORZ:
 		if pos.y >= Y0 && pos.y < Y0 + CELL_WIDTH*N_IMG_CELL_VERT:
 			xy.x = floor((pos.x - X0) / CELL_WIDTH)
@@ -708,13 +708,13 @@ func _input(event):
 			event.is_action_pressed("rt_click") ):		# right mouse button
 			#print(event.position)
 			var xy = posToXY(event.position)
-			#print(xy)
+			print(xy)
 			$MessLabel.text = ""
 			clearTileMapBG()
 			$boardBG/Grid.set_cursor(-1, -1)
 			if xy.x >= 0:
-				if $SoundButton.pressed:
-					$clickAudio.play()
+				##//if $SoundButton.pressed:
+				##//	$clickAudio.play()
 				mouse_pushed = true;
 				last_xy = xy
 				pushed_xy = xy
@@ -831,7 +831,7 @@ func clear_all_basic():
 			if $boardBG/TileMap.get_cell(x, y) == TILE_BLACK:
 				setup_fallingBlack(xyToPos(x, y))
 			$boardBG/TileMap.set_cell(x, y, TILE_NONE)
-			$MiniTileMap.set_cell(x, y, TILE_NONE)
+			##//$MiniTileMap.set_cell(x, y, TILE_NONE)
 	if mode == MODE_EDIT_PICT:
 		for y in range(N_TOTAL_CELL_VERT):
 			for x in range(N_CLUES_CELL_HORZ):
@@ -842,18 +842,18 @@ func clear_all_basic():
 		for y in range(N_IMG_CELL_VERT):
 			h_clues[y] = [0]
 			for x in range(N_CLUES_CELL_HORZ):
-				$BoardBG/TileMapBG.set_cell(-x-1, y, TILE_NONE)
+				$boardBG/TileMapBG.set_cell(-x-1, y, TILE_NONE)
 		for x in range(N_IMG_CELL_HORZ):
 			v_clues[x] = [0]
 			for y in range(N_CLUES_CELL_VERT):
-				$BoardBG/TileMapBG.set_cell(x, -y-1, TILE_NONE)
+				$boardBG/TileMapBG.set_cell(x, -y-1, TILE_NONE)
 	else:
 		for y in range(N_IMG_CELL_VERT):
 			for x in range(N_CLUES_CELL_HORZ):
-				$BoardBG/TileMapBG.set_cell(-x-1, y, TILE_NONE)
+				$boardBG/TileMapBG.set_cell(-x-1, y, TILE_NONE)
 		for x in range(N_IMG_CELL_HORZ):
 			for y in range(N_CLUES_CELL_VERT):
-				$BoardBG/TileMapBG.set_cell(x, -y-1, TILE_NONE)
+				$boardBG/TileMapBG.set_cell(x, -y-1, TILE_NONE)
 func _on_ClearButton_pressed():
 	clear_all()
 	if mode == MODE_SOLVE:
@@ -863,7 +863,7 @@ func upate_imageTileMap():
 	for y in range(N_IMG_CELL_VERT):
 		for x in range(N_IMG_CELL_HORZ):
 			var img = 0 if $boardBG/TileMap.get_cell(x, y) == 1 else TILE_NONE
-			$MiniTileMap.set_cell(x, y, img)
+			##//$MiniTileMap.set_cell(x, y, img)
 
 func rotate_left_basic():
 	var ar = []
@@ -982,7 +982,7 @@ func _on_CheckButton_pressed():
 				txt += "."
 			else:
 				txt += "?"
-				$BoardBG/TileMapBG.set_cell(x, y, 0)	# yellow
+				$boardBG/TileMapBG.set_cell(x, y, 0)	# yellow
 			mask >>= 1
 		txt += "\n"
 	print(txt)
@@ -1030,10 +1030,10 @@ func change_cross_to_none():
 func clear_clues_BG():
 	for y in range(N_IMG_CELL_VERT):
 		for x in range(N_CLUES_CELL_HORZ):
-			$BoardBG/TileMapBG.set_cell(-x-1, y, TILE_NONE)
+			$boardBG/TileMapBG.set_cell(-x-1, y, TILE_NONE)
 	for x in range(N_IMG_CELL_HORZ):
 		for y in range(N_CLUES_CELL_VERT):
-			$BoardBG/TileMapBG.set_cell(x, -y-1, TILE_NONE)
+			$boardBG/TileMapBG.set_cell(x, -y-1, TILE_NONE)
 func _on_EditPictButton_pressed():		# 問題エディットモード
 	if mode == MODE_EDIT_PICT:
 		return
@@ -1070,7 +1070,7 @@ func set_cell_basic(x, y, v):
 		#check_all_clues()
 		check_clues(x, y)
 	var img = 0 if v == TILE_BLACK else TILE_NONE
-	$MiniTileMap.set_cell(x, y, img)
+	##//$MiniTileMap.set_cell(x, y, img)
 func set_cell_rect(pos1, pos2, v):
 	var x0 = min(pos1.x, pos2.x)
 	var y0 = min(pos1.y, pos2.y)
@@ -1178,7 +1178,7 @@ func _on_HintButton_pressed():
 		$MessLabel.add_color_override("font_color", Color.black)
 		$MessLabel.text = help_text
 		for x in range(N_IMG_CELL_HORZ):
-			$BoardBG/TileMapBG.set_cell(x, y, TILE_BG_YELLOW)
+			$boardBG/TileMapBG.set_cell(x, y, TILE_BG_YELLOW)
 		hintTime = 60
 		update_commandButtons()
 		return
@@ -1194,7 +1194,7 @@ func _on_HintButton_pressed():
 		$MessLabel.add_color_override("font_color", Color.black)
 		$MessLabel.text = help_text
 		for y2 in range(N_IMG_CELL_VERT):
-			$BoardBG/TileMapBG.set_cell(x, y2, TILE_BG_YELLOW)
+			$boardBG/TileMapBG.set_cell(x, y2, TILE_BG_YELLOW)
 		hintTime = 60
 		update_commandButtons()
 		return

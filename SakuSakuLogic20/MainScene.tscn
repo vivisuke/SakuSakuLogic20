@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://titleBar.gd" type="Script" id=1]
 [ext_resource path="res://MainScene.gd" type="Script" id=2]
@@ -11,8 +11,8 @@
 [ext_resource path="res://images/num17.png" type="Texture" id=9]
 [ext_resource path="res://images/num18.png" type="Texture" id=10]
 [ext_resource path="res://images/num19.png" type="Texture" id=11]
-[ext_resource path="res://images/cross20x20.png" type="Texture" id=12]
-[ext_resource path="res://images/black20x20.png" type="Texture" id=13]
+[ext_resource path="res://images/black20x20.png" type="Texture" id=12]
+[ext_resource path="res://images/cross20x20.png" type="Texture" id=13]
 [ext_resource path="res://images/num3.png" type="Texture" id=14]
 [ext_resource path="res://images/num2.png" type="Texture" id=15]
 [ext_resource path="res://images/num4.png" type="Texture" id=16]
@@ -28,6 +28,9 @@
 [ext_resource path="res://images/num12.png" type="Texture" id=26]
 [ext_resource path="res://images/num15.png" type="Texture" id=27]
 [ext_resource path="res://images/num13.png" type="Texture" id=28]
+[ext_resource path="res://images/clear_white.png" type="Texture" id=29]
+[ext_resource path="res://images/clear_gray.png" type="Texture" id=30]
+[ext_resource path="res://images/clear_black.png" type="Texture" id=31]
 
 [sub_resource type="TileSet" id=1]
 0/name = "lightgray20x20.png 0"
@@ -60,7 +63,7 @@
 1/z_index = 0
 
 [sub_resource type="TileSet" id=2]
-0/name = "black20x20.png 0"
+0/name = "cross20x20.png 0"
 0/texture = ExtResource( 13 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
@@ -74,7 +77,7 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-1/name = "cross20x20.png 1"
+1/name = "black20x20.png 1"
 1/texture = ExtResource( 12 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
@@ -429,3 +432,18 @@ text = "message"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ClearButton" type="TextureButton" parent="."]
+margin_left = 10.0
+margin_top = 767.292
+margin_right = 106.0
+margin_bottom = 863.292
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 31 )
+texture_pressed = ExtResource( 29 )
+texture_disabled = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]
