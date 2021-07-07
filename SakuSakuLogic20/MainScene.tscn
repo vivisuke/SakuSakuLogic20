@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://titleBar.gd" type="Script" id=1]
 [ext_resource path="res://MainScene.gd" type="Script" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://images/clear_white.png" type="Texture" id=29]
 [ext_resource path="res://images/clear_gray.png" type="Texture" id=30]
 [ext_resource path="res://images/clear_black.png" type="Texture" id=31]
+[ext_resource path="res://images/black6x6.png" type="Texture" id=32]
 
 [sub_resource type="TileSet" id=1]
 0/name = "lightgray20x20.png 0"
@@ -372,6 +373,22 @@
 21/shapes = [  ]
 21/z_index = 0
 
+[sub_resource type="TileSet" id=3]
+0/name = "black6x6.png 0"
+0/texture = ExtResource( 32 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 6, 6 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
 [node name="MainScene" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -391,6 +408,10 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="questLabel" type="Label" parent="titleBar"]
+margin_right = 40.0
+margin_bottom = 14.0
 
 [node name="boardBG" type="ColorRect" parent="."]
 margin_left = 10.0
@@ -445,5 +466,11 @@ texture_disabled = ExtResource( 30 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MiniTileMap" type="TileMap" parent="."]
+position = Vector2( 45, 185 )
+tile_set = SubResource( 3 )
+cell_size = Vector2( 6, 6 )
+format = 1
 
 [connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]
