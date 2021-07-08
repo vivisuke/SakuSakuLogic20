@@ -65,4 +65,17 @@ func _draw():
 		var pos = pos2*g.CELL_WIDTH + g.IMAGE_ORG - sz - Vector2(2, 2)
 		draw_rect(Rect2(pos, sz+Vector2(2, 2)), Color.white)
 		draw_string(font, pos+Vector2(0, sz.y), txt, Color.black)
+	elif curX >= 0 && curY >= 0:
+		var col = Color(0.5, 1, 0.5, 0.25)
+		var pos = Vector2(curX, curY) * g.CELL_WIDTH + g.IMAGE_ORG
+		draw_rect(Rect2(pos, Vector2(g.CELL_WIDTH, g.CELL_WIDTH)), col)
+		#
+		var style_box = StyleBoxFlat.new()
+		style_box.bg_color = Color(0, 0, 0, 0)   # 矩形背景色
+		style_box.border_color = Color.darkgreen
+		style_box.set_border_width_all(2)
+		pos = Vector2(-g.N_CLUES_CELL_HORZ, curY) * g.CELL_WIDTH + g.IMAGE_ORG
+		draw_style_box(style_box, Rect2(pos, Vector2(g.CELL_WIDTH*g.N_CLUES_CELL_HORZ, g.CELL_WIDTH)))
+		pos = Vector2(curX, -g.N_CLUES_CELL_VERT) * g.CELL_WIDTH + g.IMAGE_ORG
+		draw_style_box(style_box, Rect2(pos, Vector2(g.CELL_WIDTH, g.CELL_WIDTH*g.N_CLUES_CELL_VERT)))
 
