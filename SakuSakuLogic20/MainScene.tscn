@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://titleBar.gd" type="Script" id=1]
 [ext_resource path="res://MainScene.gd" type="Script" id=2]
@@ -44,6 +44,12 @@
 [ext_resource path="res://images/shift_right_white.png" type="Texture" id=42]
 [ext_resource path="res://images/shift_up_gray.png" type="Texture" id=43]
 [ext_resource path="res://images/shift_up_white.png" type="Texture" id=44]
+[ext_resource path="res://images/redo_black.png" type="Texture" id=45]
+[ext_resource path="res://images/redo_gray.png" type="Texture" id=46]
+[ext_resource path="res://images/undo_white.png" type="Texture" id=47]
+[ext_resource path="res://images/undo_black.png" type="Texture" id=48]
+[ext_resource path="res://images/redo_white.png" type="Texture" id=49]
+[ext_resource path="res://images/undo_gray.png" type="Texture" id=50]
 
 [sub_resource type="TileSet" id=1]
 0/name = "lightgray20x20.png 0"
@@ -531,6 +537,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="UndoButton" type="TextureButton" parent="."]
+margin_left = 315.899
+margin_top = 767.292
+margin_right = 411.899
+margin_bottom = 863.292
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 48 )
+texture_pressed = ExtResource( 47 )
+texture_disabled = ExtResource( 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RedoButton" type="TextureButton" parent="."]
+margin_left = 363.899
+margin_top = 767.292
+margin_right = 459.899
+margin_bottom = 863.292
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 45 )
+texture_pressed = ExtResource( 49 )
+texture_disabled = ExtResource( 46 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="MiniTileMap" type="TileMap" parent="."]
 position = Vector2( 45, 185 )
 tile_set = SubResource( 3 )
@@ -542,3 +574,5 @@ format = 1
 [connection signal="pressed" from="RightButton" to="." method="_on_RightButton_pressed"]
 [connection signal="pressed" from="UpButton" to="." method="_on_UpButton_pressed"]
 [connection signal="pressed" from="DownButton" to="." method="_on_DownButton_pressed"]
+[connection signal="pressed" from="UndoButton" to="." method="_on_UndoButton_pressed"]
+[connection signal="pressed" from="RedoButton" to="." method="_on_RedoButton_pressed"]

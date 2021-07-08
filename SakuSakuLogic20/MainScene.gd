@@ -173,8 +173,8 @@ func _process(delta):
 			shock_wave_timer = -1.0
 	pass
 func update_undo_redo():
-	##//$UndoButton.disabled = undo_ix == 0
-	##//$RedoButton.disabled = undo_ix == undo_stack.size()
+	$UndoButton.disabled = undo_ix == 0
+	$RedoButton.disabled = undo_ix == undo_stack.size()
 	pass
 func push_to_undo_stack(item):
 	if undo_stack.size() > undo_ix:
