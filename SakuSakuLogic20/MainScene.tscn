@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://titleBar.gd" type="Script" id=1]
 [ext_resource path="res://MainScene.gd" type="Script" id=2]
@@ -50,6 +50,9 @@
 [ext_resource path="res://images/undo_black.png" type="Texture" id=48]
 [ext_resource path="res://images/redo_white.png" type="Texture" id=49]
 [ext_resource path="res://images/undo_gray.png" type="Texture" id=50]
+[ext_resource path="res://images/check_gray.png" type="Texture" id=51]
+[ext_resource path="res://images/check_white.png" type="Texture" id=52]
+[ext_resource path="res://images/check_black.png" type="Texture" id=53]
 
 [sub_resource type="TileSet" id=1]
 0/name = "lightgray20x20.png 0"
@@ -563,6 +566,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CheckButton" type="TextureButton" parent="."]
+margin_left = 557.181
+margin_top = 767.292
+margin_right = 653.181
+margin_bottom = 863.292
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 53 )
+texture_pressed = ExtResource( 52 )
+texture_disabled = ExtResource( 51 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="MiniTileMap" type="TileMap" parent="."]
 position = Vector2( 45, 185 )
 tile_set = SubResource( 3 )
@@ -576,3 +592,4 @@ format = 1
 [connection signal="pressed" from="DownButton" to="." method="_on_DownButton_pressed"]
 [connection signal="pressed" from="UndoButton" to="." method="_on_UndoButton_pressed"]
 [connection signal="pressed" from="RedoButton" to="." method="_on_RedoButton_pressed"]
+[connection signal="pressed" from="CheckButton" to="." method="_on_CheckButton_pressed"]
