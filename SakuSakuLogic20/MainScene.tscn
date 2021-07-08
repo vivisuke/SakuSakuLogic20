@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://titleBar.gd" type="Script" id=1]
 [ext_resource path="res://MainScene.gd" type="Script" id=2]
@@ -53,6 +53,7 @@
 [ext_resource path="res://images/check_gray.png" type="Texture" id=51]
 [ext_resource path="res://images/check_white.png" type="Texture" id=52]
 [ext_resource path="res://images/check_black.png" type="Texture" id=53]
+[ext_resource path="res://fonts/FlopDesignFONT.otf" type="DynamicFontData" id=54]
 
 [sub_resource type="TileSet" id=1]
 0/name = "lightgray20x20.png 0"
@@ -394,6 +395,10 @@
 21/shapes = [  ]
 21/z_index = 0
 
+[sub_resource type="DynamicFont" id=4]
+size = 24
+font_data = ExtResource( 54 )
+
 [sub_resource type="TileSet" id=3]
 0/name = "black6x6.png 0"
 0/texture = ExtResource( 32 )
@@ -470,16 +475,18 @@ margin_left = 18.8988
 margin_top = 767.292
 margin_right = 75.8988
 margin_bottom = 781.292
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "message"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ClearButton" type="TextureButton" parent="."]
-margin_left = 10.0
-margin_top = 767.292
-margin_right = 106.0
-margin_bottom = 863.292
+margin_left = 18.8988
+margin_top = 821.231
+margin_right = 114.899
+margin_bottom = 917.231
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 31 )
 texture_pressed = ExtResource( 29 )
@@ -489,10 +496,10 @@ __meta__ = {
 }
 
 [node name="LeftButton" type="TextureButton" parent="."]
-margin_left = 75.8988
-margin_top = 767.292
-margin_right = 171.899
-margin_bottom = 863.292
+margin_left = 84.7976
+margin_top = 821.231
+margin_right = 180.798
+margin_bottom = 917.231
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 34 )
 texture_pressed = ExtResource( 36 )
@@ -502,10 +509,10 @@ __meta__ = {
 }
 
 [node name="RightButton" type="TextureButton" parent="."]
-margin_left = 219.899
-margin_top = 767.292
-margin_right = 315.899
-margin_bottom = 863.292
+margin_left = 228.798
+margin_top = 821.231
+margin_right = 324.798
+margin_bottom = 917.231
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 39 )
 texture_pressed = ExtResource( 42 )
@@ -515,10 +522,10 @@ __meta__ = {
 }
 
 [node name="UpButton" type="TextureButton" parent="."]
-margin_left = 171.899
-margin_top = 767.292
-margin_right = 267.899
-margin_bottom = 863.292
+margin_left = 180.798
+margin_top = 821.231
+margin_right = 276.798
+margin_bottom = 917.231
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 40 )
 texture_pressed = ExtResource( 44 )
@@ -528,10 +535,10 @@ __meta__ = {
 }
 
 [node name="DownButton" type="TextureButton" parent="."]
-margin_left = 123.899
-margin_top = 767.292
-margin_right = 219.899
-margin_bottom = 863.292
+margin_left = 132.798
+margin_top = 821.231
+margin_right = 228.798
+margin_bottom = 917.231
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 38 )
 texture_pressed = ExtResource( 33 )
@@ -541,10 +548,10 @@ __meta__ = {
 }
 
 [node name="UndoButton" type="TextureButton" parent="."]
-margin_left = 315.899
-margin_top = 767.292
-margin_right = 411.899
-margin_bottom = 863.292
+margin_left = 324.798
+margin_top = 821.231
+margin_right = 420.798
+margin_bottom = 917.231
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 48 )
 texture_pressed = ExtResource( 47 )
@@ -554,10 +561,10 @@ __meta__ = {
 }
 
 [node name="RedoButton" type="TextureButton" parent="."]
-margin_left = 363.899
-margin_top = 767.292
-margin_right = 459.899
-margin_bottom = 863.292
+margin_left = 372.798
+margin_top = 821.231
+margin_right = 468.798
+margin_bottom = 917.231
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 45 )
 texture_pressed = ExtResource( 49 )
@@ -567,10 +574,10 @@ __meta__ = {
 }
 
 [node name="CheckButton" type="TextureButton" parent="."]
-margin_left = 557.181
-margin_top = 767.292
-margin_right = 653.181
-margin_bottom = 863.292
+margin_left = 566.079
+margin_top = 821.231
+margin_right = 662.079
+margin_bottom = 917.231
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 53 )
 texture_pressed = ExtResource( 52 )

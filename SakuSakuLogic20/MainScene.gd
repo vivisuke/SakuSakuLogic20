@@ -46,7 +46,7 @@ var mouse_pushed = false
 var last_xy = Vector2()
 var pushed_xy = Vector2()
 var cell_val = 0
-var g_map = {}		# 水平・垂直方向手がかり数字配列 → 候補数値マップ
+#var g_map = {}		# 水平・垂直方向手がかり数字配列 → 候補数値マップ
 #var slicedTable = []	# {0x0000 ～ 0x7fff → 連続ビットごとにスライスした配列} の配列
 var h_clues = []		# 水平方向手がかり数字リスト（数字配列の配列）
 var v_clues = []		# 垂直方向手がかり数字リスト
@@ -247,6 +247,37 @@ func data_to_clues(data : int) -> Array:
 #			g_map[key] = [data]
 #	#print(g_map([1]))
 #	#print(g_map([0]))
+func clues_to_candidates(clues : Array) -> Array:
+	#print(clues)
+	if clues == null || clues.empty() || clues == [0]:
+		return [0]
+	var s = clues.size() - 1;		#	手がかり数字間の数
+	for i in range(clues.size()):
+		s += clues[i]
+	if( s > N_IMG_CELL_HORZ):
+		return [0]
+	var cands = []
+	if( s == N_IMG_CELL_HORZ ):				#	余裕がなく、全て入れれる場合
+		var d = 0;
+		for i in range(clues.size()):
+			d <<= (clues[i] + 1);
+			d |= (1 << clues[i]) - 1;
+		cands.push_back(d);
+		return cands;
+	if( clues.size() == 1 ):		#	手がかり数字がひとつだけの場合
+		var bits = (1 << clues[0]) - 1;
+		for i in range(N_IMG_CELL_HORZ - 1, 0, -1):
+			cands.push_back(bits<<i);
+		return cands;
+	#	左への基礎シフト数を予め計算
+	var shift = []
+	shift.resize(clues.size())
+	var sum = 0;
+	for i in range(shift.size()-1, 0, -1):
+		shift[i] = sum;
+		sum += clues[i] + 1;		#	1 for 隙間
+	return [0]
+	
 func to_sliced(data):
 	if data == 0:
 		return [0]
@@ -309,22 +340,25 @@ func array_to_binText(lst : Array) -> String:
 	txt += "]"
 	return txt
 func init_candidates():
-	return
+	#return
 	#print("\n*** init_candidates():")
 	for y in range(N_IMG_CELL_VERT):
 		#print("h_clues[", y, "] = ", h_clues[y])
 		if h_clues[y] == null:
 			h_candidates[y] = [0]
 		else:
-			h_candidates[y] = g_map[h_clues[y]].duplicate()
+			h_candidates[y] = clues_to_candidates(h_clues[y])
+			#h_candidates[y] = g_map[h_clues[y]].duplicate()
+		print( "h_candidates[", y, "].size() = ",  h_candidates[y].size())
 		#print( "h_cand[", y, "] = ", to_binText(h_candidates[y]) )
 	for x in range(N_IMG_CELL_HORZ):
 		#print("v_clues[", x, "] = ", v_clues[x])
 		if v_clues[x] == null:
 			v_candidates[x] = [0]
 		else:
-			v_candidates[x] = g_map[v_clues[x]].duplicate()
-		#print( "v_cand[", x, "] = ", to_binText(v_candidates[x]) )
+			v_candidates[x] = clues_to_candidates(v_clues[x])
+			#v_candidates[x] = g_map[v_clues[x]].duplicate()
+		##print( "v_cand[", x, "] = ", to_binText(v_candidates[x]) )
 func num_candidates():
 	var sum = 0
 	for y in range(N_IMG_CELL_VERT):
@@ -479,7 +513,8 @@ func check_h_conflicted(y0):
 	var d1 = get_h_data(y0)
 	var d0 = get_h_data0(y0)
 	#print("d0 = ", d0)
-	var lst = g_map[h_clues[y0]].duplicate()
+	var lst = clues_to_candidates(h_clues[y0])
+	#var lst = g_map[h_clues[y0]].duplicate()
 	var bg = TILE_NONE
 	remove_conflicted(d1, d0, lst)
 	if lst.empty():
@@ -498,7 +533,8 @@ func check_h_clues(y0 : int):		# 水平方向チェック
 	var d1 = get_h_data(y0)
 	var d0 = get_h_data0(y0)
 	#print("d0 = ", d0)
-	var lst = g_map[h_clues[y0]].duplicate()
+	var lst = clues_to_candidates(h_clues[y0])
+	#var lst = g_map[h_clues[y0]].duplicate()
 	var bg = TILE_NONE
 	remove_conflicted(d1, d0, lst)
 	remove_h_auto_cross(y0)
@@ -541,7 +577,8 @@ func check_v_conflicted(x0):
 	var d1 = get_v_data(x0)
 	var d0 = get_v_data0(x0)
 	#print("d0 = ", d0)
-	var lst = g_map[v_clues[x0]].duplicate()
+	var lst = clues_to_candidates(v_clues[x0])
+	#var lst = g_map[v_clues[x0]].duplicate()
 	var bg = TILE_NONE
 	remove_conflicted(d1, d0, lst)
 	if lst.empty():
@@ -559,7 +596,8 @@ func check_v_clues(x0 : int):		# 垂直方向チェック
 	return
 	var d1 = get_v_data(x0)
 	var d0 = get_v_data0(x0)
-	var lst = g_map[v_clues[x0]].duplicate()
+	var lst = clues_to_candidates(v_clues[x0])
+	#var lst = g_map[v_clues[x0]].duplicate()
 	var bg = TILE_NONE
 	remove_conflicted(d1, d0, lst)
 	remove_v_auto_cross(x0)
