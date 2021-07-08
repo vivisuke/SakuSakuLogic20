@@ -16,6 +16,7 @@ const N_TOTAL_CELL_VERT = N_CLUES_CELL_VERT + N_IMG_CELL_VERT
 const CELL_WIDTH = BOARD_WIDTH / N_TOTAL_CELL_HORZ
 const CLUES_WIDTH = CELL_WIDTH * N_CLUES_CELL_HORZ
 const IMG_AREA_WIDTH = CELL_WIDTH * N_IMG_CELL_HORZ
+const IMAGE_ORG = Vector2(CELL_WIDTH*(N_CLUES_CELL_HORZ), CELL_WIDTH*(N_CLUES_CELL_VERT)+1)
 
 const solvedPatFileName = "user://saved.dat"
 const settingsFileName = "user://settings.dat"

@@ -8,6 +8,7 @@ var pos2 = Vector2(0, 0)		# ライン終点
 var curX = -1
 var curY = -1
 var font
+#var IMAGE_ORG
 
 func _ready():
 	var label = Label.new() 
@@ -46,4 +47,22 @@ func _draw():
 	draw_line(Vector2(0, y2), Vector2(x2, y2), Color.black)
 	draw_line(Vector2(-1, 0), Vector2(-1, y2+1), Color.black)
 	draw_line(Vector2(x2, 0), Vector2(x2, y2+1), Color.black)
+	if pos1.x >= 0:		# ドラッグ中の場合
+		#print("pos1 = ", pos1, ", pos2 = ", pos2)
+		var left = min(pos1.x, pos2.x)
+		var right = max(pos1.x, pos2.x) + 1
+		var wd = right - left
+		var upper = min(pos1.y, pos2.y)
+		var bottom = max(pos1.y, pos2.y) + 1
+		var ht = bottom - upper
+		#print(left, ", ", upper, ", ", wd, ", ", ht)
+		var rct = Rect2(left*g.CELL_WIDTH + g.IMAGE_ORG.x, upper*g.CELL_WIDTH + g.IMAGE_ORG.y,
+							wd*g.CELL_WIDTH, ht*g.CELL_WIDTH)
+		draw_rect(rct, Color(0.5, 0.5, 1.0, 0.5))
+		#var pos = pos2*CELL_WIDTH + IMAGE_ORG - Vector2(CELL_WIDTH, 2)
+		var txt = "%d x %d" % [wd, ht]
+		var sz = font.get_string_size (txt)
+		var pos = pos2*g.CELL_WIDTH + g.IMAGE_ORG - sz - Vector2(2, 2)
+		draw_rect(Rect2(pos, sz+Vector2(2, 2)), Color.white)
+		draw_string(font, pos+Vector2(0, sz.y), txt, Color.black)
 
