@@ -68,6 +68,7 @@ var undo_stack = []
 var help_text = ""
 
 func _ready():
+	test_c2c()		# test clues_to_candidates()
 	if false:	# g.solveMode:
 		mode = MODE_SOLVE
 		##//$CenterContainer/HBoxContainer/EditButton.disabled = true
@@ -247,8 +248,76 @@ func data_to_clues(data : int) -> Array:
 #			g_map[key] = [data]
 #	#print(g_map([1]))
 #	#print(g_map([0]))
+func test_c2c():
+	var cands
+	#if false:
+	# 余裕がなく、全部入れれる場合
+	cands = clues_to_candidates([20])
+	assert( cands.size() == 1 )
+	assert( cands[0] == 0b11111111111111111111 )
+	cands = clues_to_candidates([9, 10])
+	assert( cands.size() == 1 )
+	assert( cands[0] == 0b11111111110111111111 )
+	cands = clues_to_candidates([1, 18])
+	assert( cands.size() == 1 )
+	assert( cands[0] == 0b11111111111111111101 )
+	# 手がかり数字がひとつだけの場合
+	cands = clues_to_candidates([19]);
+	assert( cands.size() == 2 );
+	assert( cands[0] == 0b11111111111111111110 );
+	assert( cands[1] == 0b01111111111111111111 );
+	cands = clues_to_candidates([17]);
+	assert(cands.size() == 4);
+	assert(cands[0] == 0b11111111111111111000);
+	assert(cands[1] == 0b01111111111111111100);
+	assert(cands[2] == 0b00111111111111111110);
+	assert(cands[3] == 0b00011111111111111111);
+	# 手がかり数字が複数だが、余裕がひとつだけの場合
+	cands = clues_to_candidates([8, 10]);
+	assert(cands.size() == 3);
+	assert(cands[0] == 0b11111111110111111110);		# 手がかり数字の順序とは逆なので注意
+	assert(cands[1] == 0b11111111110011111111);
+	assert(cands[2] == 0b01111111111011111111);
+	cands = clues_to_candidates([5, 2, 10]);
+	assert(cands.size() == 4);
+	assert(cands[0] == 0b11111111110110111110);
+	assert(cands[1] == 0b11111111110110011111);
+	assert(cands[2] == 0b11111111110011011111);
+	assert(cands[3] == 0b01111111111011011111);
+	# 上記以外の場合
+	cands = clues_to_candidates([7, 10]);
+	assert(cands.size() == 6);
+	assert(cands[0] == 0b11111111110111111100);
+	assert(cands[1] == 0b11111111110011111110);
+	assert(cands[2] == 0b11111111110001111111);
+	assert(cands[3] == 0b01111111111011111110);
+	assert(cands[4] == 0b01111111111001111111);
+	assert(cands[5] == 0b00111111111101111111);
+	cands = clues_to_candidates([4, 1, 10]);
+	assert(cands.size() == 20);
+	assert(cands[0]  == 0b11111111110101111000);
+	assert(cands[1]  == 0b11111111110100111100);
+	assert(cands[2]  == 0b11111111110100011110);
+	assert(cands[3]  == 0b11111111110100001111);
+	assert(cands[4]  == 0b11111111110010111100);
+	assert(cands[5]  == 0b11111111110010011110);
+	assert(cands[6]  == 0b11111111110010001111);
+	assert(cands[7]  == 0b11111111110001011110);
+	assert(cands[8]  == 0b11111111110001001111);
+	assert(cands[9]  == 0b11111111110000101111);
+	assert(cands[10] == 0b01111111111010111100);
+	assert(cands[11] == 0b01111111111010011110);
+	assert(cands[12] == 0b01111111111010001111);
+	assert(cands[13] == 0b01111111111001011110);
+	assert(cands[14] == 0b01111111111001001111);
+	assert(cands[15] == 0b01111111111000101111);
+	assert(cands[16] == 0b00111111111101011110);
+	assert(cands[17] == 0b00111111111101001111);
+	assert(cands[18] == 0b00111111111100101111);
+	assert(cands[19] == 0b00011111111110101111);
+
 func clues_to_candidates(clues : Array) -> Array:
-	#print(clues)
+	#irint(clues)
 	if clues == null || clues.empty() || clues == [0]:
 		return [0]
 	var s = clues.size() - 1;		#	手がかり数字間の数
@@ -259,7 +328,8 @@ func clues_to_candidates(clues : Array) -> Array:
 	var cands = []
 	if( s == N_IMG_CELL_HORZ ):				#	余裕がなく、全て入れれる場合
 		var d = 0;
-		for i in range(clues.size()):
+		#for i in range(clues.size()):
+		for i in range(clues.size() - 1, -1, -1):
 			d <<= (clues[i] + 1);
 			d |= (1 << clues[i]) - 1;
 		cands.push_back(d);
@@ -273,9 +343,10 @@ func clues_to_candidates(clues : Array) -> Array:
 	var shift = []
 	shift.resize(clues.size())
 	var sum = 0;
+	#for i in range(shift.size()):
 	for i in range(shift.size()-1, -1, -1):
 		shift[i] = sum;
-		sum += clues[i] + 1;		#	1 for 隙間
+		sum += clues[shift.size() - i - 1] + 1;		#	1 for 隙間
 	#	上記以外の場合
 	var v = []		# for N進数もどき
 	v.resize(clues.size())
@@ -284,8 +355,9 @@ func clues_to_candidates(clues : Array) -> Array:
 	while true:
 		var bits = 0;
 		#	各手がかり数字のビット列を v[i] だけ左にシフト
+		#print(v)
 		for i in range(clues.size()):
-			bits |= ((1<<clues[i]) - 1) << (shift[i] + v[i]);
+			bits |= ((1<<clues[clues.size() - i - 1]) - 1) << (shift[i] + v[i]);
 		cands.push_back(bits);
 		#
 		var i = clues.size() - 1;
@@ -373,7 +445,10 @@ func init_candidates():
 		else:
 			h_candidates[y] = clues_to_candidates(h_clues[y])
 			#h_candidates[y] = g_map[h_clues[y]].duplicate()
-		print( "h_candidates[", y, "].size() = ",  h_candidates[y].size())
+		if y < 5:
+			print( "h_candidates[", y, "].size() = ",  h_candidates[y].size())
+			if y == 0 && h_candidates[y].size() == 1:
+				print(to_binText(h_candidates[y][0]))
 		#print( "h_cand[", y, "] = ", to_binText(h_candidates[y]) )
 	for x in range(N_IMG_CELL_HORZ):
 		#print("v_clues[", x, "] = ", v_clues[x])
@@ -382,6 +457,8 @@ func init_candidates():
 		else:
 			v_candidates[x] = clues_to_candidates(v_clues[x])
 			#v_candidates[x] = g_map[v_clues[x]].duplicate()
+		if x < 5:
+			print( "v_candidates[", x, "].size() = ",  v_candidates[x].size())
 		##print( "v_cand[", x, "] = ", to_binText(v_candidates[x]) )
 func num_candidates():
 	var sum = 0
