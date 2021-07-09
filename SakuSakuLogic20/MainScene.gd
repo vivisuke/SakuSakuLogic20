@@ -273,10 +273,34 @@ func clues_to_candidates(clues : Array) -> Array:
 	var shift = []
 	shift.resize(clues.size())
 	var sum = 0;
-	for i in range(shift.size()-1, 0, -1):
+	for i in range(shift.size()-1, -1, -1):
 		shift[i] = sum;
 		sum += clues[i] + 1;		#	1 for 隙間
-	return [0]
+	#	上記以外の場合
+	var v = []		# for N進数もどき
+	v.resize(clues.size())
+	for i in range(v.size()):
+		v[i] = N_IMG_CELL_HORZ - s
+	while true:
+		var bits = 0;
+		#	各手がかり数字のビット列を v[i] だけ左にシフト
+		for i in range(clues.size()):
+			bits |= ((1<<clues[i]) - 1) << (shift[i] + v[i]);
+		cands.push_back(bits);
+		#
+		var i = clues.size() - 1;
+		while (i >= 0):
+			if( v[i] != 0 ):
+				v[i] -= 1;
+				for k in range(i+1, clues.size()):
+					v[k] = v[i];
+				break;
+			i -= 1
+			if( i < 0 ):		#	ループ終了
+				break;
+		if( i < 0 ):
+			break;
+	return cands
 	
 func to_sliced(data):
 	if data == 0:
