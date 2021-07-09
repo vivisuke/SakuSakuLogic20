@@ -266,7 +266,7 @@ func clues_to_candidates(clues : Array) -> Array:
 		return cands;
 	if( clues.size() == 1 ):		#	手がかり数字がひとつだけの場合
 		var bits = (1 << clues[0]) - 1;
-		for i in range(N_IMG_CELL_HORZ - 1, 0, -1):
+		for i in range(N_IMG_CELL_HORZ - s, 0, -1):
 			cands.push_back(bits<<i);
 		return cands;
 	#	左への基礎シフト数を予め計算
@@ -406,7 +406,8 @@ func update_h_fixedbits():
 				bits0 &= ~lst[i]
 			h_fixed_bits_1[y] = bits1
 			h_fixed_bits_0[y] = bits0
-		#print("h_fixed[", y , "] = ", to_binText(h_fixed_bits_1[y]), ", ", to_binText(h_fixed_bits_0[y]))
+		if y < 2:
+			print("h_fixed[", y , "] = ", to_binText(h_fixed_bits_1[y]), ", ", to_binText(h_fixed_bits_0[y]))
 	pass
 # v_candidates[] を元に v_fixed_bits_1, 0 を計算
 func update_v_fixedbits():
@@ -424,6 +425,8 @@ func update_v_fixedbits():
 				bits0 &= ~lst[i]
 			v_fixed_bits_1[x] = bits1
 			v_fixed_bits_0[x] = bits0
+		if x < 2:
+			print("v_fixed[", x , "] = ", to_binText(v_fixed_bits_1[x]), ", ", to_binText(v_fixed_bits_0[x]))
 		#print("v_fixed[", x , "] = ", to_binText(v_fixed_bits_1[x]), ", ", to_binText(v_fixed_bits_0[x]))
 	pass
 func hFixed_to_vFixed():
@@ -1010,6 +1013,7 @@ func _on_CheckButton_pressed():
 		update_h_fixedbits()	# h_candidates[] を元に h_fixed_bits_1, 0 を計算
 		#print("num candidates = ", num_candidates())
 		var nc = num_candidates()
+		print("num cands = ", nc)
 		if nc == N_IMG_CELL_HORZ + N_IMG_CELL_VERT:	# solved
 			solved = true
 			break
@@ -1018,9 +1022,19 @@ func _on_CheckButton_pressed():
 		nc0 = nc
 		hFixed_to_vFixed()
 		update_v_candidates()
+		print("v_candidates[0].size() = ", v_candidates[0].size())
+		print("v_candidates[1].size() = ", v_candidates[1].size())
+		if v_candidates[1].size() == 2:
+			print("v_candidates[1][0] = ", to_binText(v_candidates[1][0]),
+					" [1] = ", to_binText(v_candidates[1][1]))
 		update_v_fixedbits()
 		vFixed_to_hFixed()
 		update_h_candidates()
+		print("h_candidates[0].size() = ", h_candidates[0].size())
+		print("h_candidates[1].size() = ", h_candidates[1].size())
+		if h_candidates[1].size() == 2:
+			print("h_candidates[1][0] = ", to_binText(h_candidates[1][0]),
+					" [1] = ", to_binText(h_candidates[1][1]))
 		itr += 1
 	print(solved)
 	if solved:
