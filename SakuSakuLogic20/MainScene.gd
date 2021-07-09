@@ -266,7 +266,7 @@ func clues_to_candidates(clues : Array) -> Array:
 		return cands;
 	if( clues.size() == 1 ):		#	手がかり数字がひとつだけの場合
 		var bits = (1 << clues[0]) - 1;
-		for i in range(N_IMG_CELL_HORZ - s, 0, -1):
+		for i in range(N_IMG_CELL_HORZ - s, -1, -1):
 			cands.push_back(bits<<i);
 		return cands;
 	#	左への基礎シフト数を予め計算
