@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://titleBar.gd" type="Script" id=1]
 [ext_resource path="res://MainScene.gd" type="Script" id=2]
@@ -54,6 +54,12 @@
 [ext_resource path="res://images/check_white.png" type="Texture" id=52]
 [ext_resource path="res://images/check_black.png" type="Texture" id=53]
 [ext_resource path="res://fonts/FlopDesignFONT.otf" type="DynamicFontData" id=54]
+[ext_resource path="res://images/edit_white.png" type="Texture" id=55]
+[ext_resource path="res://images/light_white.png" type="Texture" id=56]
+[ext_resource path="res://images/lightbulb_gray.png" type="Texture" id=57]
+[ext_resource path="res://images/lightbulb_black.png" type="Texture" id=58]
+[ext_resource path="res://images/lightbulb_white.png" type="Texture" id=59]
+[ext_resource path="res://images/volume_up.png" type="Texture" id=60]
 
 [sub_resource type="TileSet" id=1]
 0/name = "yellow20x20.png 0"
@@ -412,7 +418,14 @@
 0/z_index = 0
 
 [sub_resource type="DynamicFont" id=3]
-size = 24
+size = 20
+font_data = ExtResource( 54 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 28
+font_data = ExtResource( 54 )
+
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 54 )
 
 [node name="MainScene" type="Node2D"]
@@ -420,7 +433,7 @@ script = ExtResource( 2 )
 
 [node name="BG" type="ColorRect" parent="."]
 margin_right = 620.0
-margin_bottom = 940.0
+margin_bottom = 900.0
 color = Color( 0.501961, 1, 0.501961, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -478,10 +491,10 @@ cell_size = Vector2( 6, 6 )
 format = 1
 
 [node name="MessLabel" type="Label" parent="."]
-margin_left = 18.8988
-margin_top = 767.292
-margin_right = 75.8988
-margin_bottom = 781.292
+margin_left = 10.0
+margin_top = 755.0
+margin_right = 99.0
+margin_bottom = 776.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "message"
@@ -489,11 +502,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="timeLabel" type="Label" parent="."]
+margin_left = 525.0
+margin_top = 755.0
+margin_right = 605.0
+margin_bottom = 776.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0:00:00"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ClearButton" type="TextureButton" parent="."]
-margin_left = 18.8988
-margin_top = 821.231
-margin_right = 114.899
-margin_bottom = 917.231
+margin_left = 10.0
+margin_top = 800.0
+margin_right = 106.0
+margin_bottom = 896.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 31 )
 texture_pressed = ExtResource( 29 )
@@ -502,63 +528,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftButton" type="TextureButton" parent="."]
-margin_left = 84.7976
-margin_top = 821.231
-margin_right = 180.798
-margin_bottom = 917.231
-rect_scale = Vector2( 0.5, 0.5 )
-texture_normal = ExtResource( 34 )
-texture_pressed = ExtResource( 36 )
-texture_disabled = ExtResource( 35 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RightButton" type="TextureButton" parent="."]
-margin_left = 228.798
-margin_top = 821.231
-margin_right = 324.798
-margin_bottom = 917.231
-rect_scale = Vector2( 0.5, 0.5 )
-texture_normal = ExtResource( 39 )
-texture_pressed = ExtResource( 42 )
-texture_disabled = ExtResource( 41 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="UpButton" type="TextureButton" parent="."]
-margin_left = 180.798
-margin_top = 821.231
-margin_right = 276.798
-margin_bottom = 917.231
-rect_scale = Vector2( 0.5, 0.5 )
-texture_normal = ExtResource( 40 )
-texture_pressed = ExtResource( 44 )
-texture_disabled = ExtResource( 43 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DownButton" type="TextureButton" parent="."]
-margin_left = 132.798
-margin_top = 821.231
-margin_right = 228.798
-margin_bottom = 917.231
-rect_scale = Vector2( 0.5, 0.5 )
-texture_normal = ExtResource( 38 )
-texture_pressed = ExtResource( 33 )
-texture_disabled = ExtResource( 37 )
+[node name="Label" type="Label" parent="ClearButton"]
+anchor_right = 1.0
+margin_left = 9.4364
+margin_top = 90.0
+margin_right = -2.5638
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "全消去"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="UndoButton" type="TextureButton" parent="."]
-margin_left = 324.798
-margin_top = 821.231
-margin_right = 420.798
-margin_bottom = 917.231
+margin_left = 60.0
+margin_top = 800.0
+margin_right = 156.0
+margin_bottom = 896.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 48 )
 texture_pressed = ExtResource( 47 )
@@ -567,11 +555,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="UndoButton"]
+anchor_right = 1.0
+margin_left = 9.4364
+margin_top = 90.0
+margin_right = -2.5638
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "戻す"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="RedoButton" type="TextureButton" parent="."]
-margin_left = 372.798
-margin_top = 821.231
-margin_right = 468.798
-margin_bottom = 917.231
+margin_left = 110.0
+margin_top = 800.0
+margin_right = 206.0
+margin_bottom = 896.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 45 )
 texture_pressed = ExtResource( 49 )
@@ -580,11 +582,161 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="RedoButton"]
+anchor_right = 1.0
+margin_left = 9.4364
+margin_top = 90.0
+margin_right = -2.5638
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "進める"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HintButton" type="TextureButton" parent="."]
+margin_left = 160.0
+margin_top = 800.0
+margin_right = 256.0
+margin_bottom = 896.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 58 )
+texture_pressed = ExtResource( 59 )
+texture_disabled = ExtResource( 57 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HintButton"]
+anchor_right = 1.0
+margin_left = 9.4364
+margin_top = 90.0
+margin_right = -2.5638
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "ヒント"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftButton" type="TextureButton" parent="."]
+margin_left = 300.0
+margin_top = 800.0
+margin_right = 396.0
+margin_bottom = 896.0
+rect_rotation = 0.186514
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 34 )
+texture_pressed = ExtResource( 36 )
+texture_disabled = ExtResource( 35 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftButton"]
+anchor_right = 1.0
+margin_left = 9.4364
+margin_top = 90.0
+margin_right = -2.5638
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "左移動"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DownButton" type="TextureButton" parent="."]
+margin_left = 350.0
+margin_top = 800.0
+margin_right = 446.0
+margin_bottom = 896.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 38 )
+texture_pressed = ExtResource( 33 )
+texture_disabled = ExtResource( 37 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="DownButton"]
+anchor_right = 1.0
+margin_left = 9.4364
+margin_top = 90.0
+margin_right = -2.5638
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "下移動"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UpButton" type="TextureButton" parent="."]
+margin_left = 400.0
+margin_top = 800.0
+margin_right = 496.0
+margin_bottom = 896.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 40 )
+texture_pressed = ExtResource( 44 )
+texture_disabled = ExtResource( 43 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UpButton"]
+anchor_right = 1.0
+margin_left = 9.4364
+margin_top = 90.0
+margin_right = -2.5636
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "上移動"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightButton" type="TextureButton" parent="."]
+margin_left = 450.0
+margin_top = 800.0
+margin_right = 546.0
+margin_bottom = 896.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 39 )
+texture_pressed = ExtResource( 42 )
+texture_disabled = ExtResource( 41 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="RightButton"]
+anchor_right = 1.0
+margin_left = 9.4364
+margin_top = 90.0
+margin_right = -2.5638
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "右移動"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="CheckButton" type="TextureButton" parent="."]
-margin_left = 566.079
-margin_top = 821.231
-margin_right = 662.079
-margin_bottom = 917.231
+margin_left = 500.0
+margin_top = 800.0
+margin_right = 596.0
+margin_bottom = 896.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 53 )
 texture_pressed = ExtResource( 52 )
@@ -593,11 +745,74 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="CheckButton"]
+anchor_right = 1.0
+margin_top = 96.0
+margin_right = -12.0002
+margin_bottom = 125.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "検査"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundButton" type="TextureButton" parent="."]
+margin_left = 550.0
+margin_top = 800.0
+margin_right = 646.0
+margin_bottom = 896.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 60 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="SoundButton"]
+anchor_right = 1.0
+margin_top = 96.0
+margin_right = -12.0002
+margin_bottom = 125.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "効果音"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 18.8988
+margin_top = 71.9187
+margin_right = 110.899
+margin_bottom = 94.9187
+custom_fonts/font = SubResource( 5 )
+text = "問題を解く"
+icon = ExtResource( 56 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 180.798
+margin_top = 71.9187
+margin_right = 322.798
+margin_bottom = 125.919
+custom_fonts/font = SubResource( 5 )
+text = "問題を作る"
+icon = ExtResource( 55 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]
-[connection signal="pressed" from="LeftButton" to="." method="_on_LeftButton_pressed"]
-[connection signal="pressed" from="RightButton" to="." method="_on_RightButton_pressed"]
-[connection signal="pressed" from="UpButton" to="." method="_on_UpButton_pressed"]
-[connection signal="pressed" from="DownButton" to="." method="_on_DownButton_pressed"]
 [connection signal="pressed" from="UndoButton" to="." method="_on_UndoButton_pressed"]
 [connection signal="pressed" from="RedoButton" to="." method="_on_RedoButton_pressed"]
+[connection signal="pressed" from="HintButton" to="." method="_on_RedoButton_pressed"]
+[connection signal="pressed" from="LeftButton" to="." method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="DownButton" to="." method="_on_DownButton_pressed"]
+[connection signal="pressed" from="UpButton" to="." method="_on_UpButton_pressed"]
+[connection signal="pressed" from="RightButton" to="." method="_on_RightButton_pressed"]
 [connection signal="pressed" from="CheckButton" to="." method="_on_CheckButton_pressed"]
+[connection signal="pressed" from="SoundButton" to="." method="_on_CheckButton_pressed"]
