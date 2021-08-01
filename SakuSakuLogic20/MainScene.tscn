@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://titleBar.gd" type="Script" id=1]
 [ext_resource path="res://MainScene.gd" type="Script" id=2]
@@ -60,6 +60,11 @@
 [ext_resource path="res://images/lightbulb_black.png" type="Texture" id=58]
 [ext_resource path="res://images/lightbulb_white.png" type="Texture" id=59]
 [ext_resource path="res://images/volume_up.png" type="Texture" id=60]
+[ext_resource path="res://images/leftward_white.png" type="Texture" id=61]
+
+[sub_resource type="DynamicFont" id=7]
+size = 20
+font_data = ExtResource( 54 )
 
 [sub_resource type="TileSet" id=1]
 0/name = "yellow20x20.png 0"
@@ -448,9 +453,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BackButton" type="TextureButton" parent="titleBar"]
+margin_right = 96.0
+margin_bottom = 96.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 61 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="questLabel" type="Label" parent="titleBar"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 180.798
+margin_top = 11.5817
+margin_right = 464.798
+margin_bottom = 32.5817
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "#1 難易度1 '???' by someone"
+align = 1
 
 [node name="boardBG" type="ColorRect" parent="."]
 margin_left = 10.0
