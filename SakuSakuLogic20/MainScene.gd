@@ -125,7 +125,7 @@ func _ready():
 						mask >>= 1
 						if (d&mask) != 0:
 							$boardBG/TileMap.set_cell(x, y, TILE_BLACK)
-							#$MiniTileMap.set_cell(x, y, TILE_BLACK)
+							#$boardBG/MiniTileMap.set_cell(x, y, TILE_BLACK)
 							#set_cell_basic(x, y, TILE_BLACK)
 				if g.solvedPat[qID].size() > N_IMG_CELL_VERT + 1:	# ☓情報も保存されている場合
 					for y in range(N_IMG_CELL_VERT):
@@ -808,7 +808,7 @@ func update_all_clues():
 func clearMiniTileMap():
 	for y in range(N_IMG_CELL_VERT):
 		for x in range(N_IMG_CELL_HORZ):
-			$MiniTileMap.set_cell(x, y, TILE_NONE)
+			$boardBG/MiniTileMap.set_cell(x, y, TILE_NONE)
 			pass
 func clearTileMap():
 	for y in range(N_IMG_CELL_VERT):
@@ -973,7 +973,7 @@ func clear_all_basic():
 			if $boardBG/TileMap.get_cell(x, y) == TILE_BLACK:
 				setup_fallingBlack(xyToPos(x, y))
 			$boardBG/TileMap.set_cell(x, y, TILE_NONE)
-			$MiniTileMap.set_cell(x, y, TILE_NONE)
+			$boardBG/MiniTileMap.set_cell(x, y, TILE_NONE)
 	if mode == MODE_EDIT_PICT:
 		for y in range(N_TOTAL_CELL_VERT):
 			for x in range(N_CLUES_CELL_HORZ):
@@ -1005,7 +1005,7 @@ func upate_imageTileMap():
 	for y in range(N_IMG_CELL_VERT):
 		for x in range(N_IMG_CELL_HORZ):
 			var img = 0 if $boardBG/TileMap.get_cell(x, y) == 1 else TILE_NONE
-			$MiniTileMap.set_cell(x, y, img)
+			$boardBG/MiniTileMap.set_cell(x, y, img)
 
 func rotate_left_basic():
 	var ar = []
@@ -1223,7 +1223,7 @@ func set_cell_basic(x, y, v):
 		#check_all_clues()
 		check_clues(x, y)
 	var img = 0 if v == TILE_BLACK else TILE_NONE
-	$MiniTileMap.set_cell(x, y, img)
+	$boardBG/MiniTileMap.set_cell(x, y, img)
 func set_cell_rect(pos1, pos2, v):
 	var x0 = min(pos1.x, pos2.x)
 	var y0 = min(pos1.y, pos2.y)

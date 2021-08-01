@@ -55,7 +55,7 @@
 [ext_resource path="res://images/check_black.png" type="Texture" id=53]
 [ext_resource path="res://fonts/FlopDesignFONT.otf" type="DynamicFontData" id=54]
 
-[sub_resource type="TileSet" id=5]
+[sub_resource type="TileSet" id=1]
 0/name = "yellow20x20.png 0"
 0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
@@ -395,11 +395,7 @@
 21/shapes = [  ]
 21/z_index = 0
 
-[sub_resource type="DynamicFont" id=4]
-size = 24
-font_data = ExtResource( 54 )
-
-[sub_resource type="TileSet" id=3]
+[sub_resource type="TileSet" id=4]
 0/name = "black6x6.png 0"
 0/texture = ExtResource( 32 )
 0/tex_offset = Vector2( 0, 0 )
@@ -414,6 +410,10 @@ font_data = ExtResource( 54 )
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 54 )
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource( 2 )
@@ -444,6 +444,7 @@ margin_left = 10.0
 margin_top = 150.0
 margin_right = 610.0
 margin_bottom = 750.0
+color = Color( 1, 1, 0.937255, 1 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -460,7 +461,7 @@ __meta__ = {
 
 [node name="TileMapBG" type="TileMap" parent="boardBG"]
 position = Vector2( 200, 200 )
-tile_set = SubResource( 5 )
+tile_set = SubResource( 1 )
 cell_size = Vector2( 20, 20 )
 format = 1
 
@@ -470,12 +471,18 @@ tile_set = SubResource( 2 )
 cell_size = Vector2( 20, 20 )
 format = 1
 
+[node name="MiniTileMap" type="TileMap" parent="boardBG"]
+position = Vector2( 35, 35 )
+tile_set = SubResource( 4 )
+cell_size = Vector2( 6, 6 )
+format = 1
+
 [node name="MessLabel" type="Label" parent="."]
 margin_left = 18.8988
 margin_top = 767.292
 margin_right = 75.8988
 margin_bottom = 781.292
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "message"
 __meta__ = {
@@ -585,12 +592,6 @@ texture_disabled = ExtResource( 51 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="MiniTileMap" type="TileMap" parent="."]
-position = Vector2( 45, 185 )
-tile_set = SubResource( 3 )
-cell_size = Vector2( 6, 6 )
-format = 1
 
 [connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]
 [connection signal="pressed" from="LeftButton" to="." method="_on_LeftButton_pressed"]
