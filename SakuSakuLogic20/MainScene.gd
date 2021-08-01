@@ -819,9 +819,9 @@ func clearTileMapBG():
 		for x in range(N_IMG_CELL_HORZ):
 			$boardBG/TileMapBG.set_cell(x, y, TILE_NONE)
 func setup_fallingBlack(pos):
-	##//var obj = FallingBlack.instance()
-	##//obj.setup(pos)
-	##//add_child(obj)
+	var obj = FallingBlack.instance()
+	obj.setup(pos)
+	add_child(obj)
 	pass
 func setup_fallingCross(pos):
 	##//var obj = FallingCross.instance()
@@ -838,8 +838,8 @@ func posToXY(pos):
 			xy.y = floor((pos.y - Y0) / CELL_WIDTH)
 	return xy
 func xyToPos(x, y):
-	var px = $boardBG/TileMap.position.x + x * CELL_WIDTH
-	var py = $boardBG/TileMap.position.y + y * CELL_WIDTH
+	var px = $boardBG/TileMap.global_position.x + x * CELL_WIDTH
+	var py = $boardBG/TileMap.global_position.y + y * CELL_WIDTH
 	return Vector2(px, py)
 func _input(event):
 	if dialog_opened:
