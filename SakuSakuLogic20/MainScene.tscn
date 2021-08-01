@@ -66,6 +66,25 @@
 size = 20
 font_data = ExtResource( 54 )
 
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 54 )
+
+[sub_resource type="TileSet" id=4]
+0/name = "black6x6.png 0"
+0/texture = ExtResource( 32 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 6, 6 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
 [sub_resource type="TileSet" id=1]
 0/name = "yellow20x20.png 0"
 0/texture = ExtResource( 5 )
@@ -406,31 +425,12 @@ font_data = ExtResource( 54 )
 21/shapes = [  ]
 21/z_index = 0
 
-[sub_resource type="TileSet" id=4]
-0/name = "black6x6.png 0"
-0/texture = ExtResource( 32 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 6, 6 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-
 [sub_resource type="DynamicFont" id=3]
 size = 20
 font_data = ExtResource( 54 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 28
-font_data = ExtResource( 54 )
-
-[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 54 )
 
 [node name="MainScene" type="Node2D"]
@@ -464,13 +464,50 @@ __meta__ = {
 
 [node name="questLabel" type="Label" parent="titleBar"]
 margin_left = 180.798
-margin_top = 11.5817
+margin_top = 15.7094
 margin_right = 464.798
-margin_bottom = 32.5817
+margin_bottom = 36.7094
 custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "#1 難易度1 '???' by someone"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SolveButton" type="Button" parent="."]
+margin_left = 18.8988
+margin_top = 71.9187
+margin_right = 160.899
+margin_bottom = 125.919
+custom_fonts/font = SubResource( 5 )
+text = "問題を解く"
+icon = ExtResource( 56 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EditButton" type="Button" parent="."]
+margin_left = 180.798
+margin_top = 71.9187
+margin_right = 322.798
+margin_bottom = 125.919
+custom_fonts/font = SubResource( 5 )
+text = "問題を作る"
+icon = ExtResource( 55 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ModeRect" type="ColorRect" parent="."]
+margin_left = 18.8988
+margin_top = 125.919
+margin_right = 160.899
+margin_bottom = 135.919
+color = Color( 1, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="boardBG" type="ColorRect" parent="."]
 margin_left = 10.0
@@ -483,14 +520,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Grid" type="ColorRect" parent="boardBG"]
-margin_right = 600.0
-margin_bottom = 600.0
-color = Color( 1, 1, 1, 0 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="MiniTileMap" type="TileMap" parent="boardBG"]
+position = Vector2( 35, 35 )
+tile_set = SubResource( 4 )
+cell_size = Vector2( 6, 6 )
+format = 1
 
 [node name="TileMapBG" type="TileMap" parent="boardBG"]
 position = Vector2( 200, 200 )
@@ -504,11 +538,14 @@ tile_set = SubResource( 2 )
 cell_size = Vector2( 20, 20 )
 format = 1
 
-[node name="MiniTileMap" type="TileMap" parent="boardBG"]
-position = Vector2( 35, 35 )
-tile_set = SubResource( 4 )
-cell_size = Vector2( 6, 6 )
-format = 1
+[node name="Grid" type="ColorRect" parent="boardBG"]
+margin_right = 600.0
+margin_bottom = 600.0
+color = Color( 1, 1, 1, 0 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MessLabel" type="Label" parent="."]
 margin_left = 10.0
@@ -617,9 +654,9 @@ __meta__ = {
 }
 
 [node name="HintButton" type="TextureButton" parent="."]
-margin_left = 160.0
+margin_left = 158.0
 margin_top = 800.0
-margin_right = 256.0
+margin_right = 254.0
 margin_bottom = 896.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 58 )
@@ -802,34 +839,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
-margin_left = 18.8988
-margin_top = 71.9187
-margin_right = 110.899
-margin_bottom = 94.9187
-custom_fonts/font = SubResource( 5 )
-text = "問題を解く"
-icon = ExtResource( 56 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button2" type="Button" parent="."]
-margin_left = 180.798
-margin_top = 71.9187
-margin_right = 322.798
-margin_bottom = 125.919
-custom_fonts/font = SubResource( 5 )
-text = "問題を作る"
-icon = ExtResource( 55 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]
 [connection signal="pressed" from="UndoButton" to="." method="_on_UndoButton_pressed"]
 [connection signal="pressed" from="RedoButton" to="." method="_on_RedoButton_pressed"]
-[connection signal="pressed" from="HintButton" to="." method="_on_RedoButton_pressed"]
+[connection signal="pressed" from="HintButton" to="." method="_on_HintButton_pressed"]
 [connection signal="pressed" from="LeftButton" to="." method="_on_LeftButton_pressed"]
 [connection signal="pressed" from="DownButton" to="." method="_on_DownButton_pressed"]
 [connection signal="pressed" from="UpButton" to="." method="_on_UpButton_pressed"]

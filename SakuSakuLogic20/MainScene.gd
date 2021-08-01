@@ -74,7 +74,7 @@ func _ready():
 		##//$CenterContainer/HBoxContainer/EditButton.disabled = true
 	else:
 		mode = MODE_EDIT_PICT
-		$titleBar/questLabel.text = ""
+		$titleBar/questLabel.text = "test"
 	$MessLabel.text = ""
 	##//$HintButton/timeLabel.text = ""
 	update_modeButtons()
