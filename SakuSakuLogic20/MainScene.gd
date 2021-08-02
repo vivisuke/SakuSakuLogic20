@@ -98,7 +98,7 @@ func _ready():
 		v_autoFilledCross[x] = 0
 		v_usedup[x] = false
 	h_answer1_bits_1.resize(N_IMG_CELL_VERT)
-	if false:	#g.solveMode:
+	if g.solveMode:
 		#qix = g.qNum2QIX[g.qNumber - 1]
 		qix = g.qNumber - 1
 		qID = g.qix2ID[qix]
