@@ -1358,3 +1358,7 @@ func _on_SoundButton_pressed():
 	g.settings["Sound"] = $SoundButton.pressed
 	saveSettings()
 	pass # Replace with function body.
+
+
+func _on_EditButton_pressed():
+	pass # Replace with function body.

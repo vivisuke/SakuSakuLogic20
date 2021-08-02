@@ -439,7 +439,7 @@ script = ExtResource( 2 )
 [node name="BG" type="ColorRect" parent="."]
 margin_right = 620.0
 margin_bottom = 900.0
-color = Color( 0.501961, 1, 0.501961, 1 )
+color = Color( 0.501961, 0.752941, 0.501961, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -839,6 +839,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="SolveButton" to="." method="_on_SolveButton_pressed"]
+[connection signal="pressed" from="EditButton" to="." method="_on_EditButton_pressed"]
 [connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]
 [connection signal="pressed" from="UndoButton" to="." method="_on_UndoButton_pressed"]
 [connection signal="pressed" from="RedoButton" to="." method="_on_RedoButton_pressed"]
