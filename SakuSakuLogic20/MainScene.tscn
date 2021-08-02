@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://titleBar.gd" type="Script" id=1]
 [ext_resource path="res://MainScene.gd" type="Script" id=2]
@@ -61,6 +61,7 @@
 [ext_resource path="res://images/lightbulb_white.png" type="Texture" id=59]
 [ext_resource path="res://images/volume_up.png" type="Texture" id=60]
 [ext_resource path="res://images/leftward_white.png" type="Texture" id=61]
+[ext_resource path="res://images/leftward_black.png" type="Texture" id=62]
 
 [sub_resource type="DynamicFont" id=7]
 size = 20
@@ -458,6 +459,7 @@ margin_right = 96.0
 margin_bottom = 96.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture_normal = ExtResource( 61 )
+texture_pressed = ExtResource( 62 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -839,6 +841,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="titleBar/BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="SolveButton" to="." method="_on_SolveButton_pressed"]
 [connection signal="pressed" from="EditButton" to="." method="_on_EditButton_pressed"]
 [connection signal="pressed" from="ClearButton" to="." method="_on_ClearButton_pressed"]
