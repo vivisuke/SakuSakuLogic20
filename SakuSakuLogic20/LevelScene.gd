@@ -102,10 +102,40 @@ func _ready():
 	pass # Replace with function body.
 	pass # Replace with function body.
 
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.button_index == BUTTON_WHEEL_UP:
+				print("BUTTON_WHEEL_UP")
+			if event.button_index == BUTTON_WHEEL_DOWN:
+				print("BUTTON_WHEEL_DOWN")
+		#print("InputEventMouseButton")
+		if event.is_action_pressed("click"):		# left mouse button
+			if $ScrollContainer.get_global_rect().has_point(event.position):		# in ScrollContainer
+				mouse_pushed = true;
+				mouse_pos = event.position
+				scroll_pos = $ScrollContainer.get_v_scroll()
+		elif event.is_action_released("click"):
+			mouse_pushed = false;
+			mouse_pos = null
+	elif event is InputEventMouseMotion && mouse_pushed:	# mouse Moved
+		$ScrollContainer.set_v_scroll(scroll_pos + mouse_pos.y - event.position.y)
+	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_QuestPanel_pressed(num):
+	print("mouse_pos = ", mouse_pos)
+	if mouse_pos == null || dialog_opened:
+		return
+	var v = $ScrollContainer.scroll_vertical
+	print("v = ", v)
+	print("QuestPanel_pressed(", num, ")")
+	g.lvl_vscroll = $ScrollContainer.scroll_vertical
+	print("vscroll = ", g.lvl_vscroll)
+	g.solveMode = true;
+	g.qNumber = num
+	#g.qix = qNum2QIX[num-1]
+	get_tree().change_scene("res://MainScene.tscn")
+	pass # Replace with function body.
 
 
 func _on_ClearButton_pressed():
