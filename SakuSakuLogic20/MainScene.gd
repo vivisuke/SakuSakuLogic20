@@ -1181,6 +1181,7 @@ func _on_SolveButton_pressed():		# 解答モード
 	clearTileMap()
 	clearMiniTileMap()
 	init_usedup()
+	set_crosses_null_line_column();	# 手がかり数字0の行・列に全部 ☓ を埋める
 	pass # Replace with function body.
 func change_cross_to_none():
 	for y in range(N_IMG_CELL_VERT):
@@ -1194,7 +1195,7 @@ func clear_clues_BG():
 	for x in range(N_IMG_CELL_HORZ):
 		for y in range(N_CLUES_CELL_VERT):
 			$boardBG/TileMapBG.set_cell(x, -y-1, TILE_NONE)
-func _on_EditPictButton_pressed():		# 問題エディットモード
+func _on_EditButton_pressed():		# 問題エディットモード
 	if mode == MODE_EDIT_PICT:
 		return
 	mode = MODE_EDIT_PICT
@@ -1210,7 +1211,6 @@ func _on_EditPictButton_pressed():		# 問題エディットモード
 			mask >>= 1
 			$boardBG/TileMap.set_cell(x, y, TILE_BLACK if (d & mask) != 0 else TILE_NONE)
 	upate_imageTileMap()
-	set_crosses_null_line_column();	# 手がかり数字0の行・列に全部 ☓ を埋める
 func _on_BackButton_pressed():
 	if !qSolved && !qSolvedStat:
 		var lst = []
@@ -1365,8 +1365,4 @@ func _on_HintButton_pressed():
 func _on_SoundButton_pressed():
 	g.settings["Sound"] = $SoundButton.pressed
 	saveSettings()
-	pass # Replace with function body.
-
-
-func _on_EditButton_pressed():
 	pass # Replace with function body.
