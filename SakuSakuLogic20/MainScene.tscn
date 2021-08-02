@@ -63,14 +63,14 @@
 [ext_resource path="res://images/leftward_white.png" type="Texture" id=61]
 [ext_resource path="res://images/leftward_black.png" type="Texture" id=62]
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=1]
 size = 20
 font_data = ExtResource( 54 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 54 )
 
-[sub_resource type="TileSet" id=4]
+[sub_resource type="TileSet" id=3]
 0/name = "black6x6.png 0"
 0/texture = ExtResource( 32 )
 0/tex_offset = Vector2( 0, 0 )
@@ -86,7 +86,7 @@ font_data = ExtResource( 54 )
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=1]
+[sub_resource type="TileSet" id=4]
 0/name = "yellow20x20.png 0"
 0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
@@ -116,7 +116,7 @@ font_data = ExtResource( 54 )
 1/shapes = [  ]
 1/z_index = 0
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="TileSet" id=5]
 0/name = "cross20x20.png 0"
 0/texture = ExtResource( 13 )
 0/tex_offset = Vector2( 0, 0 )
@@ -426,11 +426,11 @@ font_data = ExtResource( 54 )
 21/shapes = [  ]
 21/z_index = 0
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=6]
 size = 20
 font_data = ExtResource( 54 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 size = 28
 font_data = ExtResource( 54 )
 
@@ -469,7 +469,7 @@ margin_left = 180.798
 margin_top = 15.7094
 margin_right = 464.798
 margin_bottom = 36.7094
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "#1 難易度1 '???' by someone"
 align = 1
@@ -482,7 +482,7 @@ margin_left = 18.8988
 margin_top = 71.9187
 margin_right = 160.899
 margin_bottom = 125.919
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "問題を解く"
 icon = ExtResource( 56 )
 __meta__ = {
@@ -494,14 +494,14 @@ margin_left = 180.798
 margin_top = 71.9187
 margin_right = 322.798
 margin_bottom = 125.919
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 text = "問題を作る"
 icon = ExtResource( 55 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ModeRect" type="ColorRect" parent="."]
+[node name="modeUnderLine" type="ColorRect" parent="."]
 margin_left = 18.8988
 margin_top = 125.919
 margin_right = 160.899
@@ -524,19 +524,19 @@ __meta__ = {
 
 [node name="MiniTileMap" type="TileMap" parent="boardBG"]
 position = Vector2( 35, 35 )
-tile_set = SubResource( 4 )
+tile_set = SubResource( 3 )
 cell_size = Vector2( 6, 6 )
 format = 1
 
 [node name="TileMapBG" type="TileMap" parent="boardBG"]
 position = Vector2( 200, 200 )
-tile_set = SubResource( 1 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 20, 20 )
 format = 1
 
 [node name="TileMap" type="TileMap" parent="boardBG"]
 position = Vector2( 200, 200 )
-tile_set = SubResource( 2 )
+tile_set = SubResource( 5 )
 cell_size = Vector2( 20, 20 )
 format = 1
 
@@ -554,7 +554,7 @@ margin_left = 10.0
 margin_top = 755.0
 margin_right = 99.0
 margin_bottom = 776.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "message"
 __meta__ = {
@@ -566,7 +566,7 @@ margin_left = 525.0
 margin_top = 755.0
 margin_right = 605.0
 margin_bottom = 776.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "0:00:00"
 align = 2
@@ -593,7 +593,7 @@ margin_left = 9.4364
 margin_top = 90.0
 margin_right = -2.5638
 margin_bottom = 119.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "全消去"
 align = 1
@@ -620,7 +620,7 @@ margin_left = 9.4364
 margin_top = 90.0
 margin_right = -2.5638
 margin_bottom = 119.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "戻す"
 align = 1
@@ -647,7 +647,7 @@ margin_left = 9.4364
 margin_top = 90.0
 margin_right = -2.5638
 margin_bottom = 119.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "進める"
 align = 1
@@ -674,7 +674,7 @@ margin_left = 9.4364
 margin_top = 90.0
 margin_right = -2.5638
 margin_bottom = 119.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "ヒント"
 align = 1
@@ -702,7 +702,7 @@ margin_left = 9.4364
 margin_top = 90.0
 margin_right = -2.5638
 margin_bottom = 119.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "左移動"
 align = 1
@@ -729,7 +729,7 @@ margin_left = 9.4364
 margin_top = 90.0
 margin_right = -2.5638
 margin_bottom = 119.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "下移動"
 align = 1
@@ -756,7 +756,7 @@ margin_left = 9.4364
 margin_top = 90.0
 margin_right = -2.5636
 margin_bottom = 119.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "上移動"
 align = 1
@@ -783,7 +783,7 @@ margin_left = 9.4364
 margin_top = 90.0
 margin_right = -2.5638
 margin_bottom = 119.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "右移動"
 align = 1
@@ -809,7 +809,7 @@ anchor_right = 1.0
 margin_top = 96.0
 margin_right = -12.0002
 margin_bottom = 125.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "検査"
 align = 1
@@ -833,7 +833,7 @@ anchor_right = 1.0
 margin_top = 96.0
 margin_right = -12.0002
 margin_bottom = 125.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "効果音"
 align = 1

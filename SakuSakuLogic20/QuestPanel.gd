@@ -35,8 +35,9 @@ func set_number(n : int):
 	#if g.solved[n-1]:
 	#	$Question.hide()
 func set_difficulty(n : int):
-	$difficulty.text = "Difficulty: %d" % n
-	$jDiffi.text = "難易度 %d" % n
+	$difficulty.text = "難易度 %d" % n
+	#$difficulty.text = "Difficulty: %d" % n
+	#$jDiffi.text = "難易度 %d" % n
 func set_star(n : int):		# n: [0, 3]
 	var txt = ""
 	for i in range(n):
@@ -55,13 +56,15 @@ func set_clearTime(n : int):
 		$clearTime.text = "Time: %02d:%02d:%02d" % [h, m, s]
 	update()
 func set_title(ttl):
-	$title.text = "Title: " + ttl
-	$jTitle.text = "タイトル " + ttl
+	$title.text = "タイトル " + ttl
+	#$title.text = "Title: " + ttl
+	#$jTitle.text = "タイトル " + ttl
 	solved = true
 	update()
 func set_author(name):
-	$author.text = "Author: " + name
-	$jAuthor.text = "問題作者 " + name
+	$author.text = "問題作者 " + name
+	#$author.text = "Author: " + name
+	#$jAuthor.text = "問題作者 " + name
 func set_ans_image(ai):
 	if !ai.empty():
 		$Question.hide()

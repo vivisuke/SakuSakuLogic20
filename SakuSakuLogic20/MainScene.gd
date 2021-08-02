@@ -68,10 +68,10 @@ var undo_stack = []
 var help_text = ""
 
 func _ready():
-	test_c2c()		# test clues_to_candidates()
-	if false:	# g.solveMode:
+	#test_c2c()		# test clues_to_candidates()
+	if g.solveMode:
 		mode = MODE_SOLVE
-		##//$CenterContainer/HBoxContainer/EditButton.disabled = true
+		$EditButton.disabled = true
 	else:
 		mode = MODE_EDIT_PICT
 		$titleBar/questLabel.text = "test"
@@ -147,9 +147,15 @@ func _ready():
 		set_crosses_null_line_column()	# 手がかり数字0の行・列に全部 ☓ を埋める
 		print("qSolved = ", qSolved)
 	update_undo_redo()
+	update_modeUnderLine()
 	##//$CanvasLayer/ColorRect.material.set_shader_param("size", 0)
 	##//$SoundButton.pressed = !g.settings.has("Sound") || g.settings["Sound"]
 	pass # Replace with function body.
+func update_modeUnderLine():
+	if mode == MODE_SOLVE:
+		$modeUnderLine.rect_global_position.x = $SolveButton.rect_global_position.x
+	else:
+		$modeUnderLine.rect_global_position.x = $EditButton.rect_global_position.x
 func _process(delta):
 	if !qSolvedStat:
 		elapsedTime += delta
@@ -1165,6 +1171,7 @@ func _on_SolveButton_pressed():		# 解答モード
 	if mode == MODE_SOLVE:
 		return
 	mode = MODE_SOLVE
+	update_modeUnderLine()
 	update_modeButtons()
 	update_commandButtons()
 	# 解答保存
@@ -1191,6 +1198,7 @@ func _on_EditPictButton_pressed():		# 問題エディットモード
 	if mode == MODE_EDIT_PICT:
 		return
 	mode = MODE_EDIT_PICT
+	update_modeUnderLine()
 	update_modeButtons()
 	update_commandButtons()
 	change_cross_to_none()		#

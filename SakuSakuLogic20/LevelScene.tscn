@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://LevelScene.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Hokjesgeest-PDGB.ttf" type="DynamicFontData" id=2]
@@ -12,6 +12,10 @@ size = 40
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 4 )
 
 [node name="LevelScene" type="Node2D"]
@@ -48,6 +52,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="scoreLabel" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 124.867
+margin_right = 61.0
+margin_bottom = 138.867
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="solvedLabel" type="Label" parent="."]
+margin_left = 256.166
+margin_top = 124.867
+margin_right = 349.166
+margin_bottom = 145.867
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "solved: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+margin_left = 10.0
+margin_top = 150.0
+margin_right = 610.0
+margin_bottom = 750.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 margin_left = 10.0
 margin_top = 150.0
@@ -76,7 +113,7 @@ margin_bottom = 77.0
 [node name="ClearButton" type="Button" parent="CenterContainer/HBoxContainer"]
 margin_right = 142.0
 margin_bottom = 54.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "進捗を消す"
 icon = ExtResource( 6 )
 __meta__ = {
@@ -94,7 +131,7 @@ color = Color( 1, 1, 1, 0 )
 margin_left = 200.0
 margin_right = 342.0
 margin_bottom = 54.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "問題を作る"
 icon = ExtResource( 5 )
 __meta__ = {
