@@ -619,7 +619,6 @@ func set_h_auto_cross(y0):
 			h_autoFilledCross[y0] |= mask
 		mask <<= 1
 func check_h_conflicted(y0):
-	return
 	var d1 = get_h_data(y0)
 	var d0 = get_h_data0(y0)
 	#print("d0 = ", d0)
@@ -639,7 +638,6 @@ func check_h_conflicted(y0):
 		#if $boardBG/TileMapBG.get_cell(-x-1, y0) != TILE_BG_GRAY:
 		#$boardBG/TileMapBG.set_cell(-x-1, y0, bg)	# 黄色の方が優先
 func check_h_clues(y0 : int):		# 水平方向チェック
-	return
 	var d1 = get_h_data(y0)
 	var d0 = get_h_data0(y0)
 	#print("d0 = ", d0)
@@ -683,7 +681,6 @@ func set_v_auto_cross(x0):
 			v_autoFilledCross[x0] |= mask
 		mask <<= 1
 func check_v_conflicted(x0):
-	return
 	var d1 = get_v_data(x0)
 	var d0 = get_v_data0(x0)
 	#print("d0 = ", d0)
@@ -703,7 +700,6 @@ func check_v_conflicted(x0):
 		#if $boardBG/TileMapBG.get_cell(x0, -y-1) != TILE_BG_GRAY:
 		#$boardBG/TileMapBG.set_cell(x0, -y-1, bg)
 func check_v_clues(x0 : int):		# 垂直方向チェック
-	return
 	var d1 = get_v_data(x0)
 	var d0 = get_v_data0(x0)
 	var lst = clues_to_candidates(v_clues[x0])
