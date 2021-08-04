@@ -136,15 +136,37 @@ func _on_QuestPanel_pressed(num):
 	#g.qix = qNum2QIX[num-1]
 	get_tree().change_scene("res://MainScene.tscn")
 	pass # Replace with function body.
-
-
 func _on_ClearButton_pressed():
+	$ClearProgressDialog.window_title = "SakuSakuLogic"
+	#$ClearProgressDialog.dialog_text = "進捗を消去しても後悔しませんか？"
+	$ClearProgressDialog.dialog_text = "Are you sure to clear Progress ?"
+	$ClearProgressDialog.popup_centered()
+	dialog_opened = true
 	pass # Replace with function body.
-
-
+func _on_ConfirmationDialog_confirmed():
+	print("_on_ClearProgressDialog_confirmed")
+	g.solvedPat = {}
+	var dir = Directory.new()
+	dir.remove(g.solvedPatFileName)
+	#
+	for i in g.quest_list.size():	# 問題パネルセットアップ
+		var qix = i
+		var panel = $ScrollContainer/VBoxContainer.get_child(i)
+		panel.set_title(g.quest_list[qix][g.KEY_TITLE][0] + "???")
+		panel.set_clearTime(0)
+		panel.set_ans_image([])
+		#panel.update()
+	$scoreLabel.text = "SCORE: 0"
+	$solvedLabel.text = "Solved: 0/%d (0%%)" % g.quest_list.size()
+	pass # Replace with function body.
+func _on_ConfirmationDialog_popup_hide():
+	dialog_opened = false
+	pass # Replace with function body.
 func _on_EditButton_pressed():
 	g.lvl_vscroll = $ScrollContainer.scroll_vertical
 	print("vscroll = ", g.lvl_vscroll)
 	g.solveMode = false;
 	get_tree().change_scene("res://MainScene.tscn")
 	pass # Replace with function body.
+
+
