@@ -8,9 +8,9 @@ signal pressed(num)
 const RADIUS = 10
 const POSITION = Vector2(2, 2)
 const SIZE = Vector2(580-10, 90)
-const IMG_WIDTH = 15
-const IMG_HEIGHT = 15
-const TNCELLWD = 4
+const IMG_WIDTH = 20		# for 20x20
+const IMG_HEIGHT = 20		# for 20x20
+const TNCELLWD = 3
 const THUMBNAIL_WIDTH = IMG_WIDTH*TNCELLWD
 const THUMBNAIL_POS = (90-THUMBNAIL_WIDTH)/2+2
 const THUMBNAIL_X = 110-30
