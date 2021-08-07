@@ -451,10 +451,10 @@ func init_candidates():
 		else:
 			h_candidates[y] = clues_to_candidates(h_clues[y])
 			#h_candidates[y] = g_map[h_clues[y]].duplicate()
-		if y < 5:
-			print( "h_candidates[", y, "].size() = ",  h_candidates[y].size())
-			if y == 0 && h_candidates[y].size() == 1:
-				print(to_binText(h_candidates[y][0]))
+		#if y < 5:
+		#	#print( "h_candidates[", y, "].size() = ",  h_candidates[y].size())
+		#	if y == 0 && h_candidates[y].size() == 1:
+		#		print(to_binText(h_candidates[y][0]))
 		#print( "h_cand[", y, "] = ", to_binText(h_candidates[y]) )
 	for x in range(N_IMG_CELL_HORZ):
 		#print("v_clues[", x, "] = ", v_clues[x])
@@ -463,8 +463,8 @@ func init_candidates():
 		else:
 			v_candidates[x] = clues_to_candidates(v_clues[x])
 			#v_candidates[x] = g_map[v_clues[x]].duplicate()
-		if x < 5:
-			print( "v_candidates[", x, "].size() = ",  v_candidates[x].size())
+		#if x < 5:
+		#	print( "v_candidates[", x, "].size() = ",  v_candidates[x].size())
 		##print( "v_cand[", x, "] = ", to_binText(v_candidates[x]) )
 func num_candidates():
 	var sum = 0
@@ -489,8 +489,8 @@ func update_h_fixedbits():
 				bits0 &= ~lst[i]
 			h_fixed_bits_1[y] = bits1
 			h_fixed_bits_0[y] = bits0
-		if y < 2:
-			print("h_fixed[", y , "] = ", to_binText(h_fixed_bits_1[y]), ", ", to_binText(h_fixed_bits_0[y]))
+		#if y < 2:
+		#	print("h_fixed[", y , "] = ", to_binText(h_fixed_bits_1[y]), ", ", to_binText(h_fixed_bits_0[y]))
 	pass
 # v_candidates[] を元に v_fixed_bits_1, 0 を計算
 func update_v_fixedbits():
@@ -508,8 +508,8 @@ func update_v_fixedbits():
 				bits0 &= ~lst[i]
 			v_fixed_bits_1[x] = bits1
 			v_fixed_bits_0[x] = bits0
-		if x < 2:
-			print("v_fixed[", x , "] = ", to_binText(v_fixed_bits_1[x]), ", ", to_binText(v_fixed_bits_0[x]))
+		#if x < 2:
+		#	print("v_fixed[", x , "] = ", to_binText(v_fixed_bits_1[x]), ", ", to_binText(v_fixed_bits_0[x]))
 		#print("v_fixed[", x , "] = ", to_binText(v_fixed_bits_1[x]), ", ", to_binText(v_fixed_bits_0[x]))
 	pass
 func hFixed_to_vFixed():
@@ -1101,19 +1101,19 @@ func _on_CheckButton_pressed():
 		nc0 = nc
 		hFixed_to_vFixed()
 		update_v_candidates()
-		print("v_candidates[0].size() = ", v_candidates[0].size())
-		print("v_candidates[1].size() = ", v_candidates[1].size())
-		if v_candidates[1].size() == 2:
-			print("v_candidates[1][0] = ", to_binText(v_candidates[1][0]),
-					" [1] = ", to_binText(v_candidates[1][1]))
+		#print("v_candidates[0].size() = ", v_candidates[0].size())
+		#print("v_candidates[1].size() = ", v_candidates[1].size())
+		#if v_candidates[1].size() == 2:
+		#	print("v_candidates[1][0] = ", to_binText(v_candidates[1][0]),
+		#			" [1] = ", to_binText(v_candidates[1][1]))
 		update_v_fixedbits()
 		vFixed_to_hFixed()
 		update_h_candidates()
-		print("h_candidates[0].size() = ", h_candidates[0].size())
-		print("h_candidates[1].size() = ", h_candidates[1].size())
-		if h_candidates[1].size() == 2:
-			print("h_candidates[1][0] = ", to_binText(h_candidates[1][0]),
-					" [1] = ", to_binText(h_candidates[1][1]))
+		#print("h_candidates[0].size() = ", h_candidates[0].size())
+		#print("h_candidates[1].size() = ", h_candidates[1].size())
+		#if h_candidates[1].size() == 2:
+		#	print("h_candidates[1][0] = ", to_binText(h_candidates[1][0]),
+		#			" [1] = ", to_binText(h_candidates[1][1]))
 		itr += 1
 	print(solved)
 	if solved:
@@ -1302,9 +1302,9 @@ func _on_RedoButton_pressed():
 func fixedLine():
 	for y in range(N_IMG_CELL_VERT):
 		var d = get_h_data(y)
-		if y == 6:
-			print("h_data[", y , "] = ", to_binText(d));
-			print("h_fixed_bits_1[", y , "] = ", to_binText(h_fixed_bits_1[y]));
+		#if y == 6:
+		#	print("h_data[", y , "] = ", to_binText(d));
+		#	print("h_fixed_bits_1[", y , "] = ", to_binText(h_fixed_bits_1[y]));
 		if (d & h_fixed_bits_1[y]) != h_fixed_bits_1[y]:
 			return y;
 		var d0 = get_h_data0(y)
