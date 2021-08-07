@@ -826,9 +826,9 @@ func setup_fallingBlack(pos):
 	add_child(obj)
 	pass
 func setup_fallingCross(pos):
-	##//var obj = FallingCross.instance()
-	##//obj.setup(pos)
-	##//add_child(obj)
+	var obj = FallingCross.instance()
+	obj.setup(pos)
+	add_child(obj)
 	pass
 func posToXY(pos):
 	var xy = Vector2(-1, -1)

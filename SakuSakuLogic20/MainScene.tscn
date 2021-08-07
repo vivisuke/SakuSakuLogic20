@@ -461,10 +461,10 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=9]
 shader = SubResource( 8 )
-shader_param/center = null
-shader_param/force = null
-shader_param/size = null
-shader_param/tichness = null
+shader_param/center = Vector2( 0.5, 0.5 )
+shader_param/force = 0.024
+shader_param/size = 2.0
+shader_param/tichness = 0.1
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource( 2 )
