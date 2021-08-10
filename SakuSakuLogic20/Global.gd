@@ -2,7 +2,7 @@ extends Node2D
 
 
 const SCREEN_WIDTH = 620.0
-const SCREEN_HEIGHT = 940.0
+const SCREEN_HEIGHT = 900.0
 const BOARD_WIDTH = 600.0
 const BOARD_HEIGHT = BOARD_WIDTH
 const LR_SPC = (SCREEN_WIDTH - BOARD_WIDTH) / 2
@@ -18,8 +18,8 @@ const CLUES_WIDTH = CELL_WIDTH * N_CLUES_CELL_HORZ
 const IMG_AREA_WIDTH = CELL_WIDTH * N_IMG_CELL_HORZ
 const IMAGE_ORG = Vector2(CELL_WIDTH*(N_CLUES_CELL_HORZ), CELL_WIDTH*(N_CLUES_CELL_VERT)+1)
 
-const solvedPatFileName = "user://saved.dat"
-const settingsFileName = "user://settings.dat"
+const solvedPatFileName = "user://SSL20_saved.dat"
+const settingsFileName = "user://SSL20_settings.dat"
 
 var lang_ja = false		# 日本語モード？
 var solvedPatLoaded = false

@@ -1,0 +1,300 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>さくさくロジック20</title>
+</head>
+<body bgcolor="lightgray" style="padding: 32px 32px 32px 32px" >
+
+<div align="center">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Godot -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-0951055350914265"
+     data-ad-slot="3195980457"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>　</p>
+</div>
+
+<div align="center">
+<h1>さくさくロジック20</h1>
+<p>「さくさくロジック20」は、20x20 サイズ専用の、左部・上部の手がかり数字をヒントに、画像を完成させるパズルアプリです
+（ルール詳細は <a href="#rule">ここ</a> を参照）。<br>
+「ピクロス」「イラストロジック」「お絵かきロジック」「ノノグラム」などとも呼ばれます。</p>
+<small><p>※「イラストロジック」は 株式会社日本文芸社、株式会社コナミデジタルエンタテインメントの登録商標です。<br>
+※「お絵かきロジック」は 株式会社世界文化ホールディングスの登録商標です。<br>
+※「ピクロス」は 任天堂株式会社の登録商標です。</p></small>
+</div>
+<div align="left">
+<h2>■ 遊び方</h2>
+<ul>
+<li>最初は問題一覧が表示されています。</li>
+<li>問題一覧はスクロール可能です。</li>
+<li>問題部分をクリックすると、その問題を解く画面に遷移します。</li>
+<li>問題を解くときの操作方法は次の節を読んでください。</li>
+<li>問題を解く画面から一覧画面に戻るときは、左上の「←」アイコンを押します。</li>
+<li>問題を解き終わらずに一覧画面に戻った場合は、（経過時間も含めて）途中経過が保存されます。</li>
+<li>画面を拡大・縮小したい場合は、緑色背景のアプリ部分以外にフォーカスをあてて、Ctrl を押しながら プラス・マイナス キーを押します。<br>
+※ アプリの部分にマウスカーソルがあると、全てのキーをアプリが取ってしまいます。</li>
+</ul>
+
+<h2>■ 問題を解くときの操作方法</h2>
+<ul>
+<li>マウス左ボタンクリックで、「白」「黒」が交代します。</li>
+<li>マウス右ボタンクリックで、「白」「☓（バツ）」が交代します。<br>
+	※「☓」はそのセルが黒でないことが確定することを示します</li>
+<li>マウスボタン押下のまま移動（ドラッグ）することで、連続して黒や☓を置くことができます。</li>
+<li>ヒントボタンを押すと、黒またはバツを確定できるセルがある行または列を黄色背景で強調します。<br>
+	ヒントは何度でも使用できますが、一度使用すると１分間は使用不可となります。</li>
+</ul>
+
+</div>
+
+<div align="center">
+<iframe src="SSL20.html" width="620" height="900"></iframe>
+</div>
+<p>　</p>
+
+<div align="left" style="width: 800px">
+
+<h2>■ 補足</h2>
+<ul>
+<li>手がかり数字が空欄の行・列は数字が0であること、すなわち黒がなく全部☓（バツ）であることを示します。</li>
+<li>セルの状態を変更し、１行または１列の手がかり数字を使い切ると、「☓」が自動的に設定されます。</li>
+<li>明らかに間違って黒または☓を設定した場合、手がかり数字が黄色背景強調されます。<br>
+	※ ただし、黄色にならない場合が常に正解とは限りません。</li>
+<li>セルに黒を入れ手がかり数字を使い切った場合、その手がかり数字背景がグレイになります。</li>
+</ul>
+
+
+<h2 id="rule">■ ルール説明</h2>
+<p>盤面は (1) 左上で背景白の「サムネイル表示部分」、(2) 右上・左下で背景淡い青の「手がかり数字表示部分」、
+(3) 右下で背景白で絵を描く「キャンパス部分」からなります（下図参照）。<br>
+また、キャンパス部分の各マスを「セル」と呼びます。</p>
+<img src="board.png" alt="" />
+<p><!--左部・上部の手がかり数字の数だけ、キャンパス部分のセルに黒を入れます。<br>-->
+手がかり数字とは、その行または列に黒がいくつ入るかを示す数字です。</p>
+<!--<br>
+例えば、横方向の手がかり数字が 15 の場合は、その行の全てのセルに黒が入ります（下図参照）。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>15</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td></tr>
+</table>
+-->
+<p>黒が続く場合、続いた数が手がかり数字となります。<br>
+例えば、「黒黒」の場合の手がかり数字が「2」となります。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td>　</td><td>■</td><td>■</td><td>　</td></tr>
+</table>
+<p>「黒白黒」の場合の手がかり数字は「1, 1」<!--（じゅういち ではなく いち と いち）-->となります。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>1</td><td bgcolor=lightblue>1</td><td>　</td><td>■</td><td>　</td><td>■</td><td>　</td></tr>
+</table>
+<p>逆に言うと、手がかり数字が「1, 1」の場合、「黒」と「黒」の間には一つ以上の空白を空けないといけないので、
+下図のような場合はNGとなります（NGの場合、手がかり数字の背景が黄色になります）。</p>
+<table border=1>
+<tr><td bgcolor=yellow>1</td><td bgcolor=yellow>1</td><td>■</td><td>■</td><td>　</td></tr>
+</table>
+<p>黒は手がかり数字の順番で入ります。例えば手がかり数字が「2, 1」だった場合「黒黒白黒」はOKですが、
+「黒白黒黒」はNGとなります。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td bgcolor=lightblue>1</td><td>　</td><td>■</td><td>■</td><td>　</td><td>■</td><td>　</td></tr>
+</table>
+<p>下図はNGの例：</p>
+<table border=1>
+<tr><td bgcolor=yellow>2</td><td bgcolor=yellow>1</td><td>　</td><td>■</td><td>　</td><td>■</td><td>■</td><td>　</td></tr>
+</table>
+<p></p>
+<p>セル数が多いのに、手がかり数字が小さい場合は、黒の位置が決まらないのではないかと心配するかもしれませんが、
+実際には下図のように、手がかり数字は左部と上部にあるので、その両方を満たすように黒を入れていくと、画像が完成します
+（ただし、手がかり数字が空欄の場合は、0 を意味します）。</p>
+<table border=1>
+<tr><td>　</td><td bgcolor=lightblue>　</td><td bgcolor=lightblue>1</td><td bgcolor=lightblue>1</td><td bgcolor=lightblue>　</td></tr>
+<tr><td bgcolor=lightblue>2</td><td>　</td><td>■</td><td>■</td><td>　</td></tr>
+</table>
+<p>下図はNGの例：</p>
+<table border=1>
+<tr><td>　</td><td bgcolor=yellow>　</td><td bgcolor=lightblue>1</td><td bgcolor=yellow>1</td><td bgcolor=lightblue>　</td></tr>
+<tr><td bgcolor=lightblue>2</td><td>■</td><td>■</td><td>　</td><td>　</td></tr>
+</table>
+
+<h2>■ 基本解法テクニック</h2>
+<p>注意：以下の解法テクニック名は筆者が勝手に命名したものなので、一般には通用しないかもしれません。</p>
+
+<h3>「全部入る」</h3>
+<p>セルの余白が５で、手がかり数字が「5」の場合は、全てに黒が入ります。この解法を「全部入る」と呼びます。
+これは他に黒の入れようが無いからです。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>5</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td></tr>
+</table>
+<p>　　　↓</p>
+<table border=1>
+<tr><td bgcolor=lightblue>5</td><td>■</td><td>■</td><td>■</td><td>■</td><td>■</td></tr>
+</table>
+
+<p>また、セルの余白が５で、手がかり数字が「1, 3」のように、数字＋余白を足した結果が余白数に合致する場合も、
+黒の入れ方が一通りしかないので、全部確定となります。
+先に示した余白数と手がかり数字が一致するのは、これの特殊な場合（余白がゼロ）となります。
+<table border=1>
+<tr><td bgcolor=lightblue>1</td><td bgcolor=lightblue>3</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td></tr>
+</table>
+<p>　　　↓</p>
+<table border=1>
+<tr><td bgcolor=lightblue>1</td><td bgcolor=lightblue>3</td><td>■</td><td>☓</td><td>■</td><td>■</td><td>■</td></tr>
+</table>
+</p>
+<h3>「重なったら黒」</h3>
+<p>余白が５で手がかり数字が「3」の場合、黒を左に寄せた場合と右に寄せた場合を考え、
+それらが重なった箇所はどういう場合でも黒となるので、黒が確定となります。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>3</td><td>■</td><td>■</td><td>■</td><td>　</td><td>　</td></tr>
+<tr><td bgcolor=lightblue>3</td><td>　</td><td>　</td><td>■</td><td>■</td><td>■</td></tr>
+</table>
+<p>　　　↓</p>
+<table border=1>
+<tr><td bgcolor=lightblue>3</td><td>　</td><td>　</td><td>■</td><td>　</td><td>　</td></tr>
+</table>
+<p>「重なったら黒」は、下図の余白数５・手がかり数字「2 1」のように、手がかり数字が複数ある場合でも有効です。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td bgcolor=lightblue>1</td><td>■</td><td>■</td><td>　</td><td>■</td><td>　</td></tr>
+<tr><td bgcolor=lightblue>2</td><td bgcolor=lightblue>1</td><td>　</td><td>■</td><td>■</td><td>　</td><td>■</td></tr>
+</table>
+<p>　　　↓</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td bgcolor=lightblue>1</td><td>　</td><td>■</td><td>　</td><td>　</td><td>　</td></tr>
+</table>
+<p>ただし、重なって確定するのは、同じ手がかり数字に対応する黒どうしの場合のみです。<br>
+下図のように、（右から３番目のセルが）３と１で重なっても、それは確定とはなりません。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>3</td><td bgcolor=lightblue>1</td><td>■</td><td>■</td><td>■</td><td>　</td><td>◆</td><td>　</td><td>　</td></tr>
+<tr><td bgcolor=lightblue>3</td><td bgcolor=lightblue>1</td><td>　</td><td>　</td><td>■</td><td>■</td><td>■</td><td>　</td><td>◆</td></tr>
+</table>
+<p>　　　↓</p>
+<table border=1>
+<tr><td bgcolor=lightblue>3</td><td bgcolor=lightblue>1</td><td>　</td><td>　</td><td>■</td><td>　</td><td>　</td><td>　</td><td>　</td></tr>
+</table>
+<p>このテクニックは、数字が大きい箇所で使えることが多く、特に問題を解き始めるときによく使います。</p>
+
+<h3>「届かない」</h3>
+<p>下図のような場合、黒は２の一部で、左か右に伸びます。しかし、仮に右に伸びたとしても、２つ右以上には届きません。
+よって、２つ以上右は全て☓となります。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td>　</td><td>■</td><td>　</td><td>　</td><td>　</td></tr>
+</table>
+<p>　　　↓</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td>　</td><td>■</td><td>　</td><td>☓</td><td>☓</td></tr>
+</table>
+
+<h3>「くっつき」</h3>
+<p>下図のように、黒の左に余白が一つあって、手がかり数字が４の場合、左に伸びるか、右に伸びるかですが、
+左にはひとつしか伸ばすことができないので、右に少なくとも２つ伸びることになり、そこが確定となります。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>4</td><td>　</td><td>■</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td></tr>
+</table>
+<p>　　　↓</p>
+<table border=1>
+<tr><td bgcolor=lightblue>4</td><td>　</td><td>■</td><td>■</td><td>■</td><td>　</td><td>　</td><td>　</td></tr>
+</table>
+<p>ちなみに、上図の場合、「届かない」が発動し、右の方に☓が入ります。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>4</td><td>　</td><td>■</td><td>■</td><td>■</td><td>　</td><td>☓</td><td>☓</td></tr>
+</table>
+
+<h3>「入らない」</h3>
+<p>下図のように、☓で区切られた空白が手がかり数字より少ない箇所には、黒は入らないので、その部分は☓になります。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td>　</td><td>　</td><td>　</td><td>　</td><td>☓</td><td>　</td></tr>
+</table>
+<p>　　　↓</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td>　</td><td>　</td><td>　</td><td>　</td><td>☓</td><td>☓</td></tr>
+</table>
+
+<p>下図のように、黒と黒の間に黒を入れると長すぎる場合も、黒を入れることができません。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td bgcolor=lightblue>2</td><td>　</td><td>　</td><td>■</td><td>　</td><td>■</td><td>　</td><td>　</td></tr>
+</table>
+<p>　　　↓</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td bgcolor=lightblue>2</td><td>　</td><td>　</td><td>■</td><td>☓</td><td>■</td><td>　</td><td>　</td></tr>
+</table>
+
+<h3>「確定したら両端に☓（バツ）」</h3>
+<p>下図のように、手がかり数字の一部を使い切ったら、黒の両端を必ず☓（バツ）にしましょう。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td bgcolor=lightblue>2</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td><td>■</td><td>■</td><td>　</td></tr>
+</table>
+<p>　　　↓</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td bgcolor=lightblue>2</td><td>　</td><td>　</td><td>　</td><td>　</td><td>☓</td><td>■</td><td>■</td><td>☓</td></tr>
+</table>
+<p>バツを入れておくと、それが他の箇所を考えるときの手がかりになるので、かならず入れていきましょう。<br>
+ただ、わざと難易度高く解きたい人はバツを入れなくてもOKです。</p>
+
+<h3>「両端の空白数は同じ」</h3>
+<p>これは確定を入れる直接的なテクニックではなく、確定する箇所を探すテクニックです。</p>
+<p>下図のように黒２個の右は空白が２個で左には空白が４個ある場合、この空白数は同じになるはずなので、
+これまでに説明してきたどれかの解法テクが適用できます。下図の場合は「届かない」が適用できます。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>4</td><td>　</td><td>　</td><td>　</td><td>　</td><td>■</td><td>■</td><td>　</td><td>　</td></tr>
+</table>
+<p>　　　↓「届かない」を適用</p>
+<table border=1>
+<tr><td bgcolor=lightblue>4</td><td>☓</td><td>☓</td><td>　</td><td>　</td><td>■</td><td>■</td><td>　</td><td>　</td></tr>
+</table>
+
+<p>下図の場合は、「くっつき」が適用でき、やはり左右の空白の数を同じにできます。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>5</td><td>☓</td><td>　</td><td>　</td><td>　</td><td>■</td><td>■</td><td>　</td><td>　</td></tr>
+</table>
+<p>　　　↓「くっつき」を適用</p>
+<table border=1>
+<tr><td bgcolor=lightblue>5</td><td>☓</td><td>　</td><td>　</td><td>■</td><td>■</td><td>■</td><td>　</td><td>　</td></tr>
+</table>
+<p>ちなみに、前節の「確定したら両端に☓」はこのテクニックの特別な場合（空白数がゼロ）です。</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td bgcolor=lightblue>2</td><td>　</td><td>　</td><td>　</td><td>　</td><td>☓</td><td>■</td><td>■</td><td>　</td></tr>
+</table>
+<p>　　　↓</p>
+<table border=1>
+<tr><td bgcolor=lightblue>2</td><td bgcolor=lightblue>2</td><td>　</td><td>　</td><td>　</td><td>　</td><td>☓</td><td>■</td><td>■</td><td>☓</td></tr>
+</table>
+
+<hr />
+
+</div>
+
+<p>　</p>
+
+<div align="center">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Godot -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-0951055350914265"
+     data-ad-slot="3195980457"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>　</p>
+</div>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-213833-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

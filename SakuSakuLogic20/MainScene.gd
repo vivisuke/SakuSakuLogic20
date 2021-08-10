@@ -148,8 +148,8 @@ func _ready():
 		print("qSolved = ", qSolved)
 	update_undo_redo()
 	update_modeUnderLine()
-	##//$CanvasLayer/ColorRect.material.set_shader_param("size", 0)
-	##//$SoundButton.pressed = !g.settings.has("Sound") || g.settings["Sound"]
+	$CanvasLayer/ColorRect.material.set_shader_param("size", 0)
+	$SoundButton.pressed = !g.settings.has("Sound") || g.settings["Sound"]
 	pass # Replace with function body.
 func update_modeUnderLine():
 	if mode == MODE_SOLVE:
@@ -857,8 +857,8 @@ func _input(event):
 			clearTileMapBG()
 			$boardBG/Grid.set_cursor(-1, -1)
 			if xy.x >= 0:
-				##//if $SoundButton.pressed:
-				##//	$clickAudio.play()
+				if $SoundButton.pressed:
+					$clickAudio.play()
 				mouse_pushed = true;
 				last_xy = xy
 				pushed_xy = xy
@@ -919,7 +919,7 @@ func _input(event):
 					qSolvedStat = true
 					shock_wave_timer = 0.0		# start shock wave
 					if $SoundButton.pressed:
-						$clearedAudio.play()
+						$solvedAudio.play()
 				# ☓消去
 				for y in range(N_IMG_CELL_VERT):
 					for x in range(N_IMG_CELL_HORZ):
